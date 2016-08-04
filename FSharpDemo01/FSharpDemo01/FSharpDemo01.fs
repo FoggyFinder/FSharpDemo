@@ -15,6 +15,16 @@ let getHup () =
 // [1..1000]
 // |> Seq.iter (function x -> getHup() |> ignore)
 
+// type myInterface =
+//     abstract MyProg : unit -> unit
+//     abstract M : int -> int
+
+// let z = function
+//     | 10, 20 -> printfn "%A" 10
+//     | _, _ -> ()
+
+// z (10, 20)
+
 [<EntryPoint>]
 let main argv =
     printfn "Starting Performance test:"
