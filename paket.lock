@@ -1,5 +1,5 @@
 NUGET
   remote: https://www.nuget.org/api/v2
-  specs:
-    FAKE (4.36.0)
+    FAKE (4.36)
     FSharp.Core (4.0.0.1)
+    RestSharp (105.2.3)
