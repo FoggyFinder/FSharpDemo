@@ -1,5 +1,7 @@
 module Algo
 
+    open Checked
+
     let Polynomial = 0x90000001u;
 
     let Summarize (state: uint32) (start: uint64) (n: int): uint64 =

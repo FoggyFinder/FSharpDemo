@@ -25,6 +25,11 @@ let getHup () =
 
 // z (10, 20)
 
+// open Checked
+// let x = 100uy
+// let y = 200uy
+// let s = x + y
+
 [<EntryPoint>]
 let main argv =
     printfn "Starting Performance test:"
