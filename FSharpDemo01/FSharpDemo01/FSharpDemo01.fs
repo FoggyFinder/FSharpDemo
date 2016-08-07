@@ -5,6 +5,18 @@ open RestSharp
 
 open Algo
 
+
+printfn "Hello World"
+
+// let z = query {
+//     for i in [1..5] do
+//     where (i < 3)
+//     select i
+// }
+
+// printfn "%A" z
+
+
 let getHup () =
     let client = RestClient ("http://hup.hu/tracker")
     
@@ -25,10 +37,37 @@ let getHup () =
 
 // z (10, 20)
 
-// open Checked
-// let x = 100uy
-// let y = 200uy
-// let s = x + y
+open Checked
+
+let addChecked () =
+    try
+        let x = 100uy
+        let y = 200uy
+        x + y
+    with
+    | e -> 
+        printfn "Exc: %A" e
+        0uy
+    // finally
+    //     let i = 100
+
+addChecked () |> ignore
+
+// let (|Prime|NotPrime|) x =
+//     let isEven x =
+//         x % 2 = 0
+
+//     let isNotDividable x =
+//         let max = int (sqrt (float x))
+
+//         [3..2..max]
+//         |> Seq.forall (fun j -> x % j <> 0)
+
+//     if (isEven x) || (not (isNotDividable x)) then NotPrime else Prime
+
+// match 2333455 with
+// | Prime -> printfn "Prime"
+// | NotPrime -> printfn "Not Prime"
 
 [<EntryPoint>]
 let main argv =
