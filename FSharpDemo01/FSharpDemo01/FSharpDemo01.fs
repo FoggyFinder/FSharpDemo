@@ -5,7 +5,6 @@ open RestSharp
 
 open Algo
 
-
 printfn "Hello World"
 
 // let z = query {
