@@ -68,14 +68,16 @@ let (|Prime|NotPrime|) x =
         let rec isDividableWithOddNumbers x n max =
             match (x, n, max) with
             | _, n, max when n >= max -> false
-            | x, n, _ when x % n = 0 -> true
+            | x, n, _ when x % n = 0 ->
+                printfn "Dividable with %A" n 
+                true
             | x, n, max -> isDividableWithOddNumbers x (n+2) max                
 
         not (isDividableWithOddNumbers x 3 max)
 
     if (isEven x) || (not (isNotDividable2 x)) then NotPrime else Prime
 
-match 65537 with
+match 1073741823 with
 | Prime -> printfn "Prime"
 | NotPrime -> printfn "Not Prime"
 
