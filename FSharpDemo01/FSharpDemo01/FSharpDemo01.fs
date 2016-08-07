@@ -52,21 +52,37 @@ let addChecked () =
 
 addChecked () |> ignore
 
-// let (|Prime|NotPrime|) x =
-//     let isEven x =
-//         x % 2 = 0
+let (|Prime|NotPrime|) x =
+    let isEven x =
+        x % 2 = 0
 
-//     let isNotDividable x =
-//         let max = int (sqrt (float x))
+    let isNotDividable x =
+        let max = int (sqrt (float x))
 
-//         [3..2..max]
-//         |> Seq.forall (fun j -> x % j <> 0)
+        [3..2..max]
+        |> Seq.forall (fun j -> x % j <> 0)
 
-//     if (isEven x) || (not (isNotDividable x)) then NotPrime else Prime
+    let isNotDividable2 x =
+        let max = int (sqrt (float x))
 
-// match 2333455 with
-// | Prime -> printfn "Prime"
-// | NotPrime -> printfn "Not Prime"
+        let rec isDividableWithOddNumbers x n max =
+            match (x, n, max) with
+            | _, n, max when n >= max -> false
+            | x, n, _ when x % n = 0 -> true
+            | x, n, max -> isDividableWithOddNumbers x (n+2) max                
+
+        not (isDividableWithOddNumbers x 3 max)
+
+    if (isEven x) || (not (isNotDividable2 x)) then NotPrime else Prime
+
+match 65537 with
+| Prime -> printfn "Prime"
+| NotPrime -> printfn "Not Prime"
+
+// let o = System.Object ()
+// let z = lock o
+//         <| fun x -> 100
+
 
 [<EntryPoint>]
 let main argv =
