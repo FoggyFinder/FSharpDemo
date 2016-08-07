@@ -53,18 +53,16 @@ let addChecked () =
 addChecked () |> ignore
 
 let (|Prime|NotPrime|) x =
+    let max = int (sqrt (float x))
+
     let isEven x =
         x % 2 = 0
 
-    let isNotDividable x =
-        let max = int (sqrt (float x))
-
+    let isDividable x =
         [3..2..max]
-        |> Seq.forall (fun j -> x % j <> 0)
+        |> Seq.exists (fun j -> x % j = 0)
 
-    let isNotDividable2 x =
-        let max = int (sqrt (float x))
-
+    let isDividable2 x =
         let rec isDividableWithOddNumbers x n max =
             match (x, n, max) with
             | _, n, max when n >= max -> false
@@ -73,11 +71,15 @@ let (|Prime|NotPrime|) x =
                 true
             | x, n, max -> isDividableWithOddNumbers x (n+2) max                
 
-        not (isDividableWithOddNumbers x 3 max)
+        isDividableWithOddNumbers x 3 max
 
-    if (isEven x) || (not (isNotDividable2 x)) then NotPrime else Prime
+    if (isEven x) || (isDividable2 x) then NotPrime else Prime
 
-match 1073741823 with
+match 1073741827 with
+| Prime -> printfn "Prime"
+| NotPrime -> printfn "Not Prime"
+
+match 1073741828 with
 | Prime -> printfn "Prime"
 | NotPrime -> printfn "Not Prime"
 
