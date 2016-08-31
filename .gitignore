@@ -1,2 +1,4 @@
 paket.exe
 packages
+build.fsx_*
+node_modules
