@@ -38,7 +38,10 @@ Target "Build EXE" (fun _ ->
 )
 
 "Restore"
-==> "Build JS"
 ==> "Build EXE"
 
+"Restore"
+==> "Build JS"
+
 Run "Build EXE"
+//Run "Build JS"
