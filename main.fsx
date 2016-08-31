@@ -29,10 +29,10 @@ module Introduction =
         else
             (dx * f xmin) + (integral f (xmin + dx) xmax dx)  
 
-    printfn "Introduction.integral: %A" (integral (fun x -> x * x) 1.0 2.0 0.00001)
+    printfn "Introduction.integral: %A" (integral (fun x -> x * x) 1.0 2.0 0.0001)
     // f(x) = x^2
     // F(X) = x^3/3
-    // integral f(x) = 8/3 - 1/3 = 7/3
+    // integral f(x) = F(2) - F(1) = 8/3 - 1/3 = 7/3
 
 module Types =
 
@@ -174,3 +174,119 @@ module FunctionsAndCurrying =
     let add x y = x + y
     let bicrement = add 2
     let r = bicrement 10
+
+module Operators =
+
+    open Checked
+
+    let rec (~&) n =
+        match n with
+        | n when n < 0 -> invalidArg "n" "Invalid argument"
+        | 0 -> 1
+        | _ -> n * (~&) (n - 1)
+
+    let result = &12
+
+    printfn "Operators.&: %A" result
+
+    let (|>) x f = f x
+
+    let result' = 
+        [1..10] 
+        |> List.map (fun x -> x * x)
+        |> List.iter (printfn "%A")
+
+module ActivePatterns =
+
+    let (|IsOdd|IsEven|) n = if n % 2 = 0 then IsEven else IsOdd
+
+    match 12 with
+        | IsEven -> printfn "ActivePatterns: 12 is even"
+        | IsOdd -> printfn "ActivePatterns: 12 is odd"
+
+module Classes =
+
+    type MyClass(x, y) as this =
+        let mutable _x = x
+        let mutable _y = y
+
+        member this.X = _x
+
+        member this.Y 
+            with get () = _y
+            and set value = _y <- y
+
+        new() = MyClass(0, 0)
+
+    // Inheritance
+    type Base() =
+        member this.Add x y = x + y
+        abstract member MemberFunc : int -> string -> string list
+        default this.MemberFunc a b = [""]
+
+    type Derived() =
+        inherit Base()
+
+    // Abstact class, override
+    type Derived2() =
+        inherit Base()
+        override this.MemberFunc x y = ["Derived"; x.ToString(); y]
+
+module Interfaces =
+
+    type IInterface1 =
+        abstract member MemberFunc : int -> string -> unit
+
+    type IInterface2 =
+        abstract member MemberFunc<'T> : int64 -> 'T
+
+    type Derived() =
+        interface IInterface1 with 
+            member this.MemberFunc x y = ()
+
+        interface IInterface2 with 
+            member this.MemberFunc<'T> z = 120M
+
+module Exceptions =
+    // failwith -> System.Exception
+    // invalidArg -> System.ArgumentException
+    // nullArg -> System.NullArgumentException
+    // invalidOp -> System.InvalidOperationException
+
+    try
+        failwith "fail"
+    with
+        | Failure msg -> "caught: " + msg
+        // | MyFSharpError1 msg -> " MyFSharpError1: " + msg
+        | :? System.InvalidOperationException as ex -> "unexpected"
+
+    let myFunction x = 
+        try
+            if x then "ok" else failwith "fail"
+        finally
+            printf "this will always be printed"
+
+module Events =
+    let myEvent = Event<decimal>()
+    let publishedEvent = myEvent.Publish
+    publishedEvent.Add(function t -> printfn "Events: %A" t)
+
+    myEvent.Trigger(134M)
+
+module UnitsOfMeasure =
+
+    [<Measure>] type kg
+    [<Measure>] type m
+    [<Measure>] type s
+
+    let c = 300000000L<m/s>
+    let m = 1L<kg>
+    let E = m*c*c
+
+    printfn "UnitsOfMeasure.E: %A" E
+
+module ComputationalExpressions =
+    ()
+
+module AsyncProgramming =
+    ()
