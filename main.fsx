@@ -348,7 +348,6 @@ module UnitsOfMeasure =
     printfn "UnitsOfMeasure.E: %A" E
 
 #if FSC
-
 module AsyncProgramming =
 
     let myTask delay = async {
@@ -361,7 +360,6 @@ module AsyncProgramming =
     |> Async.Parallel
     |> Async.RunSynchronously 
     |> Seq.iter (printfn "Result: %A")
-
 #endif
 
 module ComputationalExpressions =
