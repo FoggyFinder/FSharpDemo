@@ -34,6 +34,14 @@ module Introduction =
     // F(X) = x^3/3
     // integral f(x) = F(2) - F(1) = 8/3 - 1/3 = 7/3
 
+    let rec integral' f (xmin: float) (xmax: float) (dx: float) (accumulator:float) =
+        if (xmin >= xmax) then
+            accumulator
+        else
+            integral' f (xmin + dx) xmax dx (accumulator + (dx * f xmin))
+
+    printfn "Introduction.integral: %A" (integral' (fun x -> x * x) 1.0 2.0 0.00000001 0.0)
+
 module Types =
 
     let a = 100
@@ -100,7 +108,7 @@ module DiscriminatedUnions =
     | UserNameAndPassword of string * string
     | UserIdAndPin of int * int
     | FingerPrint of byte array
-    | Certificate of System.Security.X509Certificate
+    | Certificate of System.Security.Cryptography.X509Certificates.X509Certificate
 
     let myLogin = UserIdAndPin(274161, 06180)
 
@@ -206,7 +214,7 @@ module ActivePatterns =
 
 module Classes =
 
-    type MyClass(x, y) as this =
+    type MyClass(x:int, y:int) =
         let mutable _x = x
         let mutable _y = y
 
@@ -214,7 +222,7 @@ module Classes =
 
         member this.Y 
             with get () = _y
-            and set value = _y <- y
+            and set (value:int) = _y <- y
 
         new() = MyClass(0, 0)
 
@@ -238,14 +246,14 @@ module Interfaces =
         abstract member MemberFunc : int -> string -> unit
 
     type IInterface2 =
-        abstract member MemberFunc<'T> : int64 -> 'T
+        abstract member MemberFunc : int64 -> decimal
 
     type Derived() =
         interface IInterface1 with 
             member this.MemberFunc x y = ()
 
         interface IInterface2 with 
-            member this.MemberFunc<'T> z = 120M
+            member this.MemberFunc z = 120M
 
 module Exceptions =
     // failwith -> System.Exception

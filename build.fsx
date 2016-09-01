@@ -14,11 +14,14 @@ Target "Build JS" (fun _ ->
     let fableArgs = "-m commonjs -s"
 
     let sources = sourceFiles |> String.concat ","
+    let arguments = fableArgs + " " + sources
+
+    printfn "Compiling with arguments: %A" arguments
 
     let result = ExecProcessAndReturnMessages (fun info ->
         info.FileName <- fableCompiler 
         info.WorkingDirectory <- "." 
-        info.Arguments <- fableArgs + " " + sources) (System.TimeSpan.FromMinutes 5.0)
+        info.Arguments <- arguments) (System.TimeSpan.FromMinutes 5.0)
 
     result.Messages
     |> Seq.iter (printfn "FABLE Output: %A") 
@@ -44,4 +47,4 @@ Target "Build EXE" (fun _ ->
 ==> "Build JS"
 
 Run "Build EXE"
-//Run "Build JS"
+Run "Build JS"
