@@ -47,8 +47,12 @@ module Types =
     let a = 100
     let b = 100L
     let c = "100"
+
+#if FSC
     let d = 100M
     let e = 100I
+#endif
+
     let f = System.DateTime.Now
     let g = ()
     let h = true
@@ -86,14 +90,17 @@ module TuplesAndRecords =
     open System
 
     let myTuple = ("Hello", "from", "F#", DateTime.Now)
+
+#if FSC
     let result = Int64.TryParse("100")
     let (success, value) = result
 
-    printfn "TuplesAndRecords.myTuple %A" result
+    printfn "TuplesAndRecords.result %A" result
 
     type MyRecordType = { Id: int64; Name: string; Value: decimal option }
     let myRecord = { Id = 100L; Name = "Hello"; Value = None }
     let newRecord = { myRecord with Id = 200L; Value = Some 2M}
+#endif
 
 module Enums =
 
@@ -166,6 +173,7 @@ module PatternMatching =
     // Pattern matching with types
     let myObj = "Hello"
 
+#if FSC
     let whatIsIt (x:obj) =
         match x with
         | :? string as s -> printfn "PatternMatching.whatIsIt is string (%A)" s
@@ -173,6 +181,7 @@ module PatternMatching =
         | :? System.Exception as e -> printfn "PatternMatching.whatIsIt is exception (%A)" e
 
     whatIsIt myObj
+#endif
 
 module Structs =
 
@@ -196,6 +205,7 @@ module FunctionsAndCurrying =
     let bicrement = add 2
     let r = bicrement 10
 
+#if FSC
 module Operators =
 
     open Checked
@@ -216,6 +226,7 @@ module Operators =
         [1..10] 
         |> List.map (fun x -> x * x)
         |> List.iter (printfn "%A")
+#endif
 
 module ActivePatterns =
 
@@ -266,8 +277,10 @@ module Interfaces =
         interface IInterface1 with 
             member this.MemberFunc1 x y = ()
 
+#if FSC
         interface IInterface2 with 
             member this.MemberFunc2 z = 120M
+#endif
 
 module Exceptions =
     // failwith -> System.Exception
@@ -275,6 +288,7 @@ module Exceptions =
     // nullArg -> System.NullArgumentException
     // invalidOp -> System.InvalidOperationException
 
+#if FSC
     try
         failwith "fail"
     with
@@ -286,13 +300,16 @@ module Exceptions =
             if x then "ok" else failwith "fail"
         finally
             printf "this will always be printed"
+#else
+    ()
+#endif
 
 module Events =
-    let myEvent = Event<decimal>()
+    let myEvent = Event<string>()
     let publishedEvent = myEvent.Publish
     publishedEvent.Add(function t -> printfn "Events: %A" t)
 
-    myEvent.Trigger(134M)
+    myEvent.Trigger("Data")
 
 module UnitsOfMeasure =
 
@@ -301,15 +318,17 @@ module UnitsOfMeasure =
     [<Measure>] type s
 
     let c = 300000000L<m/s>
-    let m = 1L<kg>
-    let E = m*c*c
+    let mass = 1L<kg>
+    let E = mass*c*c
 
     printfn "UnitsOfMeasure.E: %A" E
 
 module AsyncProgramming =
 
     let myTask delay = async {
+#if FSC
         do System.Threading.Thread.Sleep(delay * 1000)
+#endif
         return 100 + delay 
     }
 

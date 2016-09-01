@@ -10,13 +10,12 @@ Target "Restore" (fun _ ->
 )
 
 Target "Build JS" (fun _ ->
-    let fableCompiler = "node_modules/.bin/fable.cmd"
-    let fableArgs = "-m commonjs -s"
+
+    let fableCompiler = "node_modules\\.bin\\fable.cmd"
+    let fableArgs = "-m commonjs"
 
     let sources = sourceFiles |> String.concat ","
     let arguments = fableArgs + " " + sources
-
-    printfn "Compiling with arguments: %A" arguments
 
     let result = ExecProcessAndReturnMessages (fun info ->
         info.FileName <- fableCompiler 
@@ -37,6 +36,7 @@ Target "Build EXE" (fun _ ->
             FscHelper.Target FscHelper.TargetType.Exe
             // FscHelper.Debug false
             FscHelper.Checked true
+            FscHelper.Define "FSC"
         ]
 )
 
