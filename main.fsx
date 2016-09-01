@@ -156,10 +156,22 @@ module PatternMatching =
 
     printfn "PatternMatching.TenthFibonacci: %A " (fibonacci 10)
 
+    // Null check
     let isNull x =
         match x with
         | null -> true
         | _ -> false
+
+    // Pattern matching with types
+    let myObj = "Hello"
+
+    let whatIsIt (x:obj) =
+        match x with
+        | :? string as s -> printfn "PatternMatching.whatIsIt is string (%A)" s
+        | :? int as i -> printfn "PatternMatching.whatIsIt is int (%A)" i
+        | :? System.Exception as e -> printfn "PatternMatching.whatIsIt is exception (%A)" e
+
+    whatIsIt myObj
 
 module Structs =
 
@@ -234,6 +246,7 @@ module Classes =
 
     type Derived() =
         inherit Base()
+        member this.Sub x y = x - y
 
     // Abstact class, override
     type Derived2() =
@@ -243,17 +256,17 @@ module Classes =
 module Interfaces =
 
     type IInterface1 =
-        abstract member MemberFunc : int -> string -> unit
+        abstract member MemberFunc1 : int -> string -> unit
 
     type IInterface2 =
-        abstract member MemberFunc : int64 -> decimal
+        abstract member MemberFunc2 : int64 -> decimal
 
     type Derived() =
         interface IInterface1 with 
-            member this.MemberFunc x y = ()
+            member this.MemberFunc1 x y = ()
 
         interface IInterface2 with 
-            member this.MemberFunc z = 120M
+            member this.MemberFunc2 z = 120M
 
 module Exceptions =
     // failwith -> System.Exception
@@ -265,7 +278,6 @@ module Exceptions =
         failwith "fail"
     with
         | Failure msg -> "caught: " + msg
-        // | MyFSharpError1 msg -> " MyFSharpError1: " + msg
         | :? System.InvalidOperationException as ex -> "unexpected"
 
     let myFunction x = 
@@ -293,8 +305,21 @@ module UnitsOfMeasure =
 
     printfn "UnitsOfMeasure.E: %A" E
 
+module AsyncProgramming =
+
+    let myTask delay = async {
+        do System.Threading.Thread.Sleep(delay * 1000)
+        return 100 + delay 
+    }
+
+    [1..5]
+    |> Seq.map myTask
+    |> Async.Parallel
+    |> Async.RunSynchronously 
+    |> Seq.iter (printfn "Result: %A")
+
 module ComputationalExpressions =
     ()
 
-module AsyncProgramming =
+module TypeProviders =
     ()
