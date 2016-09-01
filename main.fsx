@@ -104,6 +104,7 @@ module Enums =
 
 module DiscriminatedUnions =
 
+    [<NoComparison>]
     type LoginMethods =
     | UserNameAndPassword of string * string
     | UserIdAndPin of int * int
