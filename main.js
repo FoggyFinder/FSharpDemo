@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TypeProviders = exports.ComputationalExpressions = exports.AsyncProgramming = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ActivePatterns = exports.FunctionsAndCurrying = exports.Structs = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
+exports.TypeProviders = exports.ComputationalExpressions = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.ActivePatterns = exports.FunctionsAndCurrying = exports.Structs = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -42,26 +42,6 @@ var Introduction = exports.Introduction = function ($exports) {
   _fableCore.String.fsFormat("Introduction.reverseList: %A")(function (x) {
     console.log(x);
   })(reverseList(myList));
-
-  var integral = $exports.integral = function integral(f, xmin, xmax, dx) {
-    return xmin >= xmax ? 0 : dx * f(xmin) + integral(f, xmin + dx, xmax, dx);
-  };
-
-  _fableCore.String.fsFormat("Introduction.integral: %A")(function (x) {
-    console.log(x);
-  })(integral(function (x) {
-    return x * x;
-  }, 1, 2, 0.0001));
-
-  var integral_ = $exports["integral'"] = function integral_(f, xmin, xmax, dx, accumulator) {
-    return xmin >= xmax ? accumulator : integral_(f, xmin + dx, xmax, dx, accumulator + dx * f(xmin));
-  };
-
-  _fableCore.String.fsFormat("Introduction.integral: %A")(function (x) {
-    console.log(x);
-  })(integral_(function (x) {
-    return x * x;
-  }, 1, 2, 1e-8, 0));
 
   return $exports;
 }({});
@@ -294,9 +274,9 @@ var ActivePatterns = exports.ActivePatterns = function ($exports) {
 
   {
     var matchValue = 12;
-    var activePatternResult154 = $IsOdd$IsEven$(matchValue);
+    var activePatternResult143 = $IsOdd$IsEven$(matchValue);
 
-    if (activePatternResult154.Case === "Choice1Of2") {
+    if (activePatternResult143.Case === "Choice1Of2") {
       _fableCore.String.fsFormat("ActivePatterns: 12 is odd")(function (x) {
         console.log(x);
       });
@@ -304,6 +284,64 @@ var ActivePatterns = exports.ActivePatterns = function ($exports) {
       _fableCore.String.fsFormat("ActivePatterns: 12 is even")(function (x) {
         console.log(x);
       });
+    }
+  }
+  return $exports;
+}({});
+
+var ControlFlow = exports.ControlFlow = function ($exports) {
+  var result = $exports.result = 2 > 3 ? "True" : "False";
+  var i = (Object.defineProperty($exports, 'i', {
+    get: function get() {
+      return i;
+    },
+    set: function set(x) {
+      return i = x;
+    }
+  }), 0);
+
+  while (i < 10) {
+    _fableCore.String.fsFormat("ControlFlow.while:%A ")(function (x) {
+      console.log(x);
+    })(i);
+
+    i = i + 1;
+  }
+
+  for (var i_1 = 1; i_1 <= 20; i_1++) {
+    _fableCore.String.fsFormat("ControlFlow.for1:%A ")(function (x) {
+      console.log(x);
+    })(i_1);
+  }
+
+  {
+    var inputSequence = _fableCore.Seq.toList(_fableCore.Seq.rangeStep(1, 3, 20));
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = inputSequence[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var i_1 = _step.value;
+
+        _fableCore.String.fsFormat("ControlFlow.for2:%A ")(function (x) {
+          console.log(x);
+        })(i_1);
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
     }
   }
   return $exports;
@@ -478,28 +516,6 @@ var UnitsOfMeasure = exports.UnitsOfMeasure = function ($exports) {
   _fableCore.String.fsFormat("UnitsOfMeasure.E: %A")(function (x) {
     console.log(x);
   })(E);
-
-  return $exports;
-}({});
-
-var AsyncProgramming = exports.AsyncProgramming = function ($exports) {
-  var myTask = $exports.myTask = function myTask(delay) {
-    return function (builder_) {
-      return builder_.Delay(function (unitVar) {
-        return builder_.Return(100 + delay);
-      });
-    }(_fableCore.defaultAsyncBuilder);
-  };
-
-  _fableCore.Seq.iterate(_fableCore.String.fsFormat("Result: %A")(function (x) {
-    console.log(x);
-  }), function (arg00) {
-    return _fableCore.Async.runSynchronously(arg00);
-  }(_fableCore.Async.parallel(function (source) {
-    return _fableCore.Seq.map(function (delay) {
-      return myTask(delay);
-    }, source);
-  }(_fableCore.Seq.toList(_fableCore.Seq.range(1, 5))))));
 
   return $exports;
 }({});

@@ -22,6 +22,7 @@
   "homepage": "https://github.com/fuszenecker/FSharpDemo#readme",
   "devDependencies": {
     "fable": "^1.0.1",
-    "fable-compiler": "^0.5.10"
+    "fable-compiler": "^0.5.10",
+    "fable-core": "^0.5.5"
   }
 }

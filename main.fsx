@@ -23,6 +23,8 @@ module Introduction =
 
     printfn "Introduction.reverseList: %A" (reverseList myList)
 
+#if FSC
+
     let rec integral f (xmin: float) (xmax: float) (dx: float) =
         if (xmin >= xmax) then
             0.0
@@ -41,6 +43,8 @@ module Introduction =
             integral' f (xmin + dx) xmax dx (accumulator + (dx * f xmin))
 
     printfn "Introduction.integral: %A" (integral' (fun x -> x * x) 1.0 2.0 0.00000001 0.0)
+
+#endif
 
 module Types =
 
@@ -236,6 +240,26 @@ module ActivePatterns =
         | IsEven -> printfn "ActivePatterns: 12 is even"
         | IsOdd -> printfn "ActivePatterns: 12 is odd"
 
+module ControlFlow =
+
+    let result = 
+        if 2 > 3 then 
+            "True" 
+        else 
+            "False"
+
+    let mutable i = 0
+
+    while i < 10 do
+        printfn "ControlFlow.while:%A " i
+        i <- i + 1
+
+    for i = 1 to 20 do
+        printfn "ControlFlow.for1:%A " i
+
+    for i in [1..3..20] do
+        printfn "ControlFlow.for2:%A " i
+
 module Classes =
 
     type MyClass(x:int, y:int) =
@@ -323,12 +347,12 @@ module UnitsOfMeasure =
 
     printfn "UnitsOfMeasure.E: %A" E
 
+#if FSC
+
 module AsyncProgramming =
 
     let myTask delay = async {
-#if FSC
         do System.Threading.Thread.Sleep(delay * 1000)
-#endif
         return 100 + delay 
     }
 
@@ -337,6 +361,8 @@ module AsyncProgramming =
     |> Async.Parallel
     |> Async.RunSynchronously 
     |> Seq.iter (printfn "Result: %A")
+
+#endif
 
 module ComputationalExpressions =
     ()
