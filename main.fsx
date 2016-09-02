@@ -408,5 +408,16 @@ module ComputationalExpressions =
     let good' = divideByWorkflow' 12 3 2 1
     let bad' = divideByWorkflow' 12 3 0 1    
 
+#if FSC
 module TypeProviders =
-    ()
+
+    #reference "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
+    open FSharp.Data
+
+    type Simple = JsonProvider<""" { "name":"John", "age":94 } """>
+    let simple = Simple.Parse(""" { "name":"Tomas", "age":4 } """)
+
+    simple
+    simple.Name
+    simple.Age
+#endif
