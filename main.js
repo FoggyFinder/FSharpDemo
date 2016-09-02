@@ -521,6 +521,79 @@ var UnitsOfMeasure = exports.UnitsOfMeasure = function ($exports) {
 }({});
 
 var ComputationalExpressions = exports.ComputationalExpressions = function ($exports) {
+  var divideBy = $exports.divideBy = function divideBy(bottom, top) {
+    return bottom === 0 ? null : ~~(top / bottom);
+  };
+
+  var divideByWorkflow = $exports.divideByWorkflow = function divideByWorkflow(init, x, y, z) {
+    var a = function (top) {
+      return divideBy(x, top);
+    }(init);
+
+    if (a != null) {
+      var b = function (top) {
+        return divideBy(y, top);
+      }(a);
+
+      if (b != null) {
+        var c = function (top) {
+          return divideBy(z, top);
+        }(b);
+
+        if (c != null) {
+          return c;
+        }
+      }
+    }
+  };
+
+  var good = $exports.good = divideByWorkflow(12, 3, 2, 1);
+  var bad = $exports.bad = divideByWorkflow(12, 3, 0, 1);
+
+  var MaybeBuilder = $exports.MaybeBuilder = function () {
+    function MaybeBuilder() {
+      _classCallCheck(this, MaybeBuilder);
+    }
+
+    _createClass(MaybeBuilder, [{
+      key: "Bind",
+      value: function Bind(x, f) {
+        return x != null ? f(x) : null;
+      }
+    }, {
+      key: "Return",
+      value: function Return(x) {
+        return x;
+      }
+    }]);
+
+    return MaybeBuilder;
+  }();
+
+  _fableCore.Util.setInterfaces(MaybeBuilder.prototype, [], "FSharpDemo.ComputationalExpressions.MaybeBuilder");
+
+  var maybe = $exports.maybe = new MaybeBuilder();
+
+  var divideByWorkflow_ = $exports["divideByWorkflow'"] = function divideByWorkflow_(init, x, y, z) {
+    return function (builder_) {
+      return builder_.Bind(function (top) {
+        return divideBy(x, top);
+      }(init), function (_arg1) {
+        return builder_.Bind(function (top) {
+          return divideBy(y, top);
+        }(_arg1), function (_arg2) {
+          return builder_.Bind(function (top) {
+            return divideBy(z, top);
+          }(_arg2), function (_arg3) {
+            return builder_.Return(_arg3);
+          });
+        });
+      });
+    }(maybe);
+  };
+
+  var good_ = $exports["good'"] = divideByWorkflow_(12, 3, 2, 1);
+  var bad_ = $exports["bad'"] = divideByWorkflow_(12, 3, 0, 1);
   return $exports;
 }({});
 
