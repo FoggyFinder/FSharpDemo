@@ -6,6 +6,7 @@ let sourceFiles = [
 ]
 
 let dependencies = [
+    "packages\\FSharp.Core\\lib\\net40\\FSharp.Core.dll"
     "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
 ]
 
@@ -35,7 +36,7 @@ Target "Build JS" (fun _ ->
 
 Target "Copy Dependencies" (fun _ -> 
     dependencies
-    |> FileHelper.Copy "."
+    |> FileHelper.Copy "build"
 )
 
 Target "Build EXE" (fun _ ->
@@ -46,11 +47,11 @@ Target "Build EXE" (fun _ ->
             // FscHelper.Debug false
             FscHelper.Checked true
             FscHelper.Define "FSC"
+            FscHelper.Standalone
         ]
 )
 
 "Restore"
-==> "Copy Dependencies"
 ==> "Build EXE"
 
 "Restore"
