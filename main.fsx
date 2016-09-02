@@ -24,7 +24,7 @@ module Introduction =
 
     printfn "Introduction.reverseList: %A" (reverseList myList)
 
-#if FSC
+#if FSC // JS doesn't have good tail-recursion
     let rec integral f (xmin: float) (xmax: float) (dx: float) =
         if (xmin >= xmax) then
             0.0
@@ -51,7 +51,7 @@ module Types =
     let b = 100L
     let c = "100"
 
-#if FSC
+#if FSC // JS doesn't have decimal and biginteger
     let d = 100M
     let e = 100I
 #endif
@@ -94,7 +94,7 @@ module TuplesAndRecords =
 
     let myTuple = ("Hello", "from", "F#", DateTime.Now)
 
-#if FSC
+#if FSC // JS doesn't have 64-bit integer
     let result = Int64.TryParse("100")
     let (success, value) = result
 
@@ -176,7 +176,7 @@ module PatternMatching =
     // Pattern matching with types
     let myObj = "Hello"
 
-#if FSC
+#if FSC // JS doesn't have System.Exception
     let whatIsIt (x:obj) =
         match x with
         | :? string as s -> printfn "PatternMatching.whatIsIt is string (%A)" s
@@ -208,7 +208,7 @@ module FunctionsAndCurrying =
     let bicrement = add 2
     let r = bicrement 10
 
-#if FSC
+#if FSC // JS doesn't support operator overloading
 module Operators =
 
     open Checked
@@ -300,7 +300,7 @@ module Interfaces =
         interface IInterface1 with 
             member this.MemberFunc1 x y = ()
 
-#if FSC
+#if FSC // JS doesn't support decimal
         interface IInterface2 with 
             member this.MemberFunc2 z = 120M
 #endif
@@ -346,7 +346,7 @@ module UnitsOfMeasure =
 
     printfn "UnitsOfMeasure.E: %A" E
 
-#if FSC
+#if FSC // JS doesn't support System.Threading.Thread.Sleep and Async.RunSynchronously
 module AsyncProgramming =
 
     let myTask delay = async {
@@ -408,7 +408,7 @@ module ComputationalExpressions =
     let good' = divideByWorkflow' 12 3 2 1
     let bad' = divideByWorkflow' 12 3 0 1    
 
-#if FSC
+#if FSC // JS doesn't support assembly refeences and type providers
 #reference "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
 module TypeProviders =
 
