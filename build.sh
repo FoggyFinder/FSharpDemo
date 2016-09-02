@@ -1,1 +1,1 @@
-mono packages/FAKE/tools/fake.exe
+mono packages/FAKE/tools/FAKE.exe
