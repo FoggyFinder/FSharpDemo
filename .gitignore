@@ -3,3 +3,4 @@ packages
 build.fsx_*
 node_modules
 main.exe
+*.dll

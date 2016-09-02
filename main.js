@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TypeProviders = exports.ComputationalExpressions = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.ActivePatterns = exports.FunctionsAndCurrying = exports.Structs = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
+exports.ComputationalExpressions = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.ActivePatterns = exports.FunctionsAndCurrying = exports.Structs = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -594,9 +594,5 @@ var ComputationalExpressions = exports.ComputationalExpressions = function ($exp
 
   var good_ = $exports["good'"] = divideByWorkflow_(12, 3, 2, 1);
   var bad_ = $exports["bad'"] = divideByWorkflow_(12, 3, 0, 1);
-  return $exports;
-}({});
-
-var TypeProviders = exports.TypeProviders = function ($exports) {
   return $exports;
 }({});

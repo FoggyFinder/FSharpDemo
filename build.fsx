@@ -5,6 +5,10 @@ let sourceFiles = [
     "main.fsx"
 ]
 
+let dependencies = [
+    "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
+]
+
 Target "Restore" (fun _ ->
     Paket.Restore (fun x -> x)
 )
@@ -29,6 +33,11 @@ Target "Build JS" (fun _ ->
         failwithf "%A returned with a non-zero exit code" fableCompiler
 )
 
+Target "Copy Dependencies" (fun _ -> 
+    dependencies
+    |> FileHelper.Copy "."
+)
+
 Target "Build EXE" (fun _ ->
     sourceFiles
     |> FscHelper.Compile [
@@ -41,6 +50,7 @@ Target "Build EXE" (fun _ ->
 )
 
 "Restore"
+==> "Copy Dependencies"
 ==> "Build EXE"
 
 "Restore"

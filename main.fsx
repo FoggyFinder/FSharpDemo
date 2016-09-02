@@ -409,9 +409,9 @@ module ComputationalExpressions =
     let bad' = divideByWorkflow' 12 3 0 1    
 
 #if FSC
+#reference "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
 module TypeProviders =
 
-    #reference "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
     open FSharp.Data
 
     type Simple = JsonProvider<""" { "name":"John", "age":94 } """>
