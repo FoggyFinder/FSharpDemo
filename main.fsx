@@ -1,6 +1,7 @@
 namespace FSharpDemo
 
 module Introduction =
+
     let myFunction arg1 arg2 =
         let returnValue = arg1 * arg2
         returnValue
@@ -24,7 +25,6 @@ module Introduction =
     printfn "Introduction.reverseList: %A" (reverseList myList)
 
 #if FSC
-
     let rec integral f (xmin: float) (xmax: float) (dx: float) =
         if (xmin >= xmax) then
             0.0
@@ -43,7 +43,6 @@ module Introduction =
             integral' f (xmin + dx) xmax dx (accumulator + (dx * f xmin))
 
     printfn "Introduction.integral: %A" (integral' (fun x -> x * x) 1.0 2.0 0.00000001 0.0)
-
 #endif
 
 module Types =
