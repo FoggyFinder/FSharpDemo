@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ComputationalExpressions = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.FunctionsAndCurrying = exports.Structs = exports.ActivePatterns = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
+exports.ComputationalExpressions = exports.AsyncProgramming = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.FunctionsAndCurrying = exports.Structs = exports.ActivePatterns = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -370,9 +370,16 @@ var Classes = exports.Classes = function ($exports) {
         this.my = value;
       }
     }], [{
-      key: ".ctor",
-      value: function ctor() {
+      key: ".ctor_0",
+      value: function ctor_0() {
         return new MyClass(0, 0);
+      }
+    }, {
+      key: ".ctor_1",
+      value: function ctor_1(values) {
+        var firstArg = values != null ? values : 100;
+        var secondArg = values != null ? values : 200;
+        return new MyClass(firstArg, secondArg);
       }
     }]);
 
@@ -516,6 +523,30 @@ var UnitsOfMeasure = exports.UnitsOfMeasure = function ($exports) {
     console.log(x);
   })(E);
 
+  return $exports;
+}({});
+
+var AsyncProgramming = exports.AsyncProgramming = function ($exports) {
+  var counterThread = $exports.counterThread = _fableCore.MailboxProcessor.start(function (inbox) {
+    var loop = function loop(counter) {
+      return function (builder_) {
+        return builder_.Delay(function (unitVar) {
+          _fableCore.String.fsFormat("AsyncProgramming.Counter = %d, waiting...")(function (x) {
+            console.log(x);
+          })(counter);
+
+          return builder_.Bind(inbox.receive(), function (_arg1) {
+            return builder_.ReturnFrom(loop(counter + _arg1));
+          });
+        });
+      }(_fableCore.defaultAsyncBuilder);
+    };
+
+    return loop(0);
+  });
+
+  counterThread.post(5);
+  counterThread.post(-20);
   return $exports;
 }({});
 

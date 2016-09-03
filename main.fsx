@@ -276,6 +276,11 @@ module Classes =
 
         new() = MyClass(0, 0)
 
+        new(?values) =
+            let firstArg = defaultArg values 100
+            let secondArg = defaultArg values 200
+            MyClass(firstArg, secondArg)
+
     // Inheritance
     type Base() =
         member this.Add x y = x + y
@@ -349,9 +354,9 @@ module UnitsOfMeasure =
 
     printfn "UnitsOfMeasure.E: %A" E
 
-#if FSC // JS doesn't support System.Threading.Thread.Sleep and Async.RunSynchronously
 module AsyncProgramming =
 
+#if FSC // JS doesn't support System.Threading.Thread.Sleep and Async.RunSynchronously
     let myTask delay = async {
         do System.Threading.Thread.Sleep(delay * 1000)
         return 100 + delay 
@@ -363,6 +368,21 @@ module AsyncProgramming =
     |> Async.RunSynchronously 
     |> Seq.iter (printfn "AsyncProgramming.Result: %A")
 #endif
+
+    let counterThread =
+        MailboxProcessor.Start(fun inbox ->
+            let rec loop counter =
+                async { 
+                    do printfn "AsyncProgramming.Counter = %d, waiting..." counter
+                    let! msg = inbox.Receive()
+                    return! loop(counter + msg) 
+                }
+
+            // Start loop with counter = 0
+            loop 0)
+
+    counterThread.Post(5)
+    counterThread.Post(-20)
 
 module ComputationalExpressions =
 
