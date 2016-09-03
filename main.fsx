@@ -155,6 +155,13 @@ module Collections =
     let intList = [1; 2; 3; 4; 5]
     let intList': List<int> = [1; 2; 3; 4; 5]
 
+    printfn "Collections.rev %A" (List.rev intList)
+    printfn "Collections.filter %A" (List.filter (fun i -> i % 2 = 0) intList)
+    printfn "Collections.map %A" (List.map (fun i -> i * i * i) intList)
+    printfn "Collections.fold %A" (List.fold (fun acc x -> acc + x) 0 intList)
+    printfn "Collections.foldOp %A" (List.fold (+) 0 intList)
+    printfn "Collections.sum %A" (List.sum intList)
+
     let intArray = [|1; 2; 3; 4; 5|]
     let intArray': int array = [|1; 2; 3; 4; 5|]
 

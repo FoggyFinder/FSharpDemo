@@ -55,6 +55,10 @@ var LetsTranscend = exports.LetsTranscend = function ($exports) {
     return x % 2 === 0;
   }, fibonacciSeq)));
 
+  _fableCore.String.fsFormat("LetsTranscend.fibonacciSum: %A")(function (x) {
+    console.log(x);
+  })(fibonacciSum);
+
   return $exports;
 }({});
 
