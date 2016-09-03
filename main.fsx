@@ -359,7 +359,7 @@ module AsyncProgramming =
     |> Seq.map myTask
     |> Async.Parallel
     |> Async.RunSynchronously 
-    |> Seq.iter (printfn "Result: %A")
+    |> Seq.iter (printfn "AsyncProgramming.Result: %A")
 #endif
 
 module ComputationalExpressions =
