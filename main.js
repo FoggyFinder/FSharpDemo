@@ -83,6 +83,38 @@ var Collections = exports.Collections = function ($exports) {
 
   var intList_ = $exports["intList'"] = _fableCore.List.ofArray([1, 2, 3, 4, 5]);
 
+  _fableCore.String.fsFormat("Collections.rev %A")(function (x) {
+    console.log(x);
+  })(_fableCore.List.reverse(intList));
+
+  _fableCore.String.fsFormat("Collections.filter %A")(function (x) {
+    console.log(x);
+  })(_fableCore.List.filter(function (i) {
+    return i % 2 === 0;
+  }, intList));
+
+  _fableCore.String.fsFormat("Collections.map %A")(function (x) {
+    console.log(x);
+  })(_fableCore.List.map(function (i) {
+    return i * i * i;
+  }, intList));
+
+  _fableCore.String.fsFormat("Collections.fold %A")(function (x) {
+    console.log(x);
+  })(_fableCore.Seq.fold(function (acc, x) {
+    return acc + x;
+  }, 0, intList));
+
+  _fableCore.String.fsFormat("Collections.foldOp %A")(function (x) {
+    console.log(x);
+  })(_fableCore.Seq.fold(function (x, y) {
+    return x + y;
+  }, 0, intList));
+
+  _fableCore.String.fsFormat("Collections.sum %A")(function (x) {
+    console.log(x);
+  })(_fableCore.Seq.sum(intList));
+
   var intArray = $exports.intArray = new Int32Array([1, 2, 3, 4, 5]);
   var intArray_ = $exports["intArray'"] = new Int32Array([1, 2, 3, 4, 5]);
   intArray[3] = 20;
@@ -241,9 +273,9 @@ var ActivePatterns = exports.ActivePatterns = function ($exports) {
 
   {
     var matchValue = 12;
-    var activePatternResult123 = $IsOdd$IsEven$(matchValue);
+    var activePatternResult127 = $IsOdd$IsEven$(matchValue);
 
-    if (activePatternResult123.Case === "Choice1Of2") {
+    if (activePatternResult127.Case === "Choice1Of2") {
       _fableCore.String.fsFormat("ActivePatterns: 12 is odd")(function (x) {
         console.log(x);
       });

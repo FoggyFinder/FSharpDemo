@@ -323,7 +323,7 @@ module Operators =
     let result' = 
         [1..5] 
         |> List.map (fun x -> x * x)
-        |> List.iter (printfn "%A")
+        |> List.iter (printfn "Operators.|> %A")
 #endif
 
 module ControlFlow =
