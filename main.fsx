@@ -27,16 +27,27 @@ module Introduction =
     printfn "Introduction.reverseList: %A" (reverseList myList)
 
 #if FSC // JS doesn't have good tail-recursion
+    // y = integral f(x) = x^2 from 1.0 to to 2.0 
+    // f(x) = x^2
+    // F(X) = x^3/3
+    // y = F(2) - F(1) = 8/3 - 1/3 = 7/3
+
     let rec integral f (xmin: float) (xmax: float) (dx: float) =
         if (xmin >= xmax) then
             0.0
         else
-            (dx * f xmin) + (integral f (xmin + dx) xmax dx)  
+            (dx * f xmin) + (integral f (xmin + dx) xmax dx)
 
     printfn "Introduction.integral: %A" (integral (fun x -> x * x) 1.0 2.0 0.0001)
-    // f(x) = x^2
-    // F(X) = x^3/3
-    // integral f(x) = F(2) - F(1) = 8/3 - 1/3 = 7/3
+
+    // public static double integral(FSharpFunc<double, double> f, double xmin, double xmax, double dx)
+    // {
+    //     if (xmin >= xmax)
+    //     {
+    //         return 0.0;
+    //     }
+    //     return dx * f.Invoke(xmin) + Introduction.integral(f, xmin + dx, xmax, dx);
+    // }  
 
     let rec integral' f (xmin: float) (xmax: float) (dx: float) (accumulator:float) =
         if (xmin >= xmax) then
@@ -45,6 +56,24 @@ module Introduction =
             integral' f (xmin + dx) xmax dx (accumulator + (dx * f xmin))
 
     printfn "Introduction.integral: %A" (integral' (fun x -> x * x) 1.0 2.0 0.00000001 0.0)
+
+    // public static double integral'(FSharpFunc<double, double> f, double xmin, double xmax, double dx, double accumulator)
+    // {
+    //     while (xmin < xmax)
+    //     {
+    //         FSharpFunc<double, double> arg_21_0 = f;
+    //         double arg_1F_0 = xmin + dx;
+    //         double arg_1D_0 = xmax;
+    //         double arg_1B_0 = dx;
+    //         accumulator += dx * f.Invoke(xmin);
+    //         dx = arg_1B_0;
+    //         xmax = arg_1D_0;
+    //         xmin = arg_1F_0;
+    //         f = arg_21_0;
+    //     }
+    //     return accumulator;
+    // }
+
 #endif
 
 module LetsTranscend =
