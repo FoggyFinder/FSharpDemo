@@ -410,7 +410,7 @@ module ComputationalExpressions =
     let bad' = divideByWorkflow' 12 3 0 1    
 
 #if FSC // JS doesn't support assembly refeences and type providers
-#reference "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
+#reference "packages/FSharp.Data/lib/net40/FSharp.Data.dll"
 module TypeProviders =
 
     open FSharp.Data
@@ -422,3 +422,8 @@ module TypeProviders =
     simple.Name
     simple.Age
 #endif
+
+// :FsiShow
+// CTRL-w x
+// CTRL-w CTRL-w
+// -i -d
