@@ -122,6 +122,8 @@ module LetsTranscend =
         |> Seq.take 5
         |> Seq.sum
 
+    printfn "LetsTranscend.fibonacciSum: %A" fibonacciSum
+
 module Types =
 
     let a = 100

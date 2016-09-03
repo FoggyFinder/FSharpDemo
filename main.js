@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ComputationalExpressions = exports.AsyncProgramming = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.FunctionsAndCurrying = exports.Structs = exports.ActivePatterns = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
+exports.ComputationalExpressions = exports.AsyncProgramming = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.FunctionsAndCurrying = exports.Structs = exports.ActivePatterns = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.LetsTranscend = exports.Introduction = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -42,6 +42,18 @@ var Introduction = exports.Introduction = function ($exports) {
   _fableCore.String.fsFormat("Introduction.reverseList: %A")(function (x) {
     console.log(x);
   })(reverseList(myList));
+
+  return $exports;
+}({});
+
+var LetsTranscend = exports.LetsTranscend = function ($exports) {
+  var fibonacciSeq = $exports.fibonacciSeq = _fableCore.Seq.unfold(function (tupledArg) {
+    return [tupledArg[0] + tupledArg[1], [tupledArg[1], tupledArg[0] + tupledArg[1]]];
+  }, [0, 1]);
+
+  var fibonacciSum = $exports.fibonacciSum = _fableCore.Seq.sum(_fableCore.Seq.take(5, _fableCore.Seq.filter(function (x) {
+    return x % 2 === 0;
+  }, fibonacciSeq)));
 
   return $exports;
 }({});
@@ -225,9 +237,9 @@ var ActivePatterns = exports.ActivePatterns = function ($exports) {
 
   {
     var matchValue = 12;
-    var activePatternResult121 = $IsOdd$IsEven$(matchValue);
+    var activePatternResult123 = $IsOdd$IsEven$(matchValue);
 
-    if (activePatternResult121.Case === "Choice1Of2") {
+    if (activePatternResult123.Case === "Choice1Of2") {
       _fableCore.String.fsFormat("ActivePatterns: 12 is odd")(function (x) {
         console.log(x);
       });
