@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ComputationalExpressions = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.ActivePatterns = exports.FunctionsAndCurrying = exports.Structs = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
+exports.ComputationalExpressions = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.FunctionsAndCurrying = exports.Structs = exports.ActivePatterns = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.Introduction = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -218,6 +218,28 @@ var PatternMatching = exports.PatternMatching = function ($exports) {
   return $exports;
 }({});
 
+var ActivePatterns = exports.ActivePatterns = function ($exports) {
+  var $IsOdd$IsEven$ = $exports.$IsOdd$IsEven$ = function $IsOdd$IsEven$(n) {
+    return n % 2 === 0 ? new _fableCore.Choice("Choice2Of2", [null]) : new _fableCore.Choice("Choice1Of2", [null]);
+  };
+
+  {
+    var matchValue = 12;
+    var activePatternResult121 = $IsOdd$IsEven$(matchValue);
+
+    if (activePatternResult121.Case === "Choice1Of2") {
+      _fableCore.String.fsFormat("ActivePatterns: 12 is odd")(function (x) {
+        console.log(x);
+      });
+    } else {
+      _fableCore.String.fsFormat("ActivePatterns: 12 is even")(function (x) {
+        console.log(x);
+      });
+    }
+  }
+  return $exports;
+}({});
+
 var Structs = exports.Structs = function ($exports) {
   var Point2D = $exports.Point2D = function () {
     function Point2D() {
@@ -267,28 +289,6 @@ var FunctionsAndCurrying = exports.FunctionsAndCurrying = function ($exports) {
   return $exports;
 }({});
 
-var ActivePatterns = exports.ActivePatterns = function ($exports) {
-  var $IsOdd$IsEven$ = $exports.$IsOdd$IsEven$ = function $IsOdd$IsEven$(n) {
-    return n % 2 === 0 ? new _fableCore.Choice("Choice2Of2", [null]) : new _fableCore.Choice("Choice1Of2", [null]);
-  };
-
-  {
-    var matchValue = 12;
-    var activePatternResult143 = $IsOdd$IsEven$(matchValue);
-
-    if (activePatternResult143.Case === "Choice1Of2") {
-      _fableCore.String.fsFormat("ActivePatterns: 12 is odd")(function (x) {
-        console.log(x);
-      });
-    } else {
-      _fableCore.String.fsFormat("ActivePatterns: 12 is even")(function (x) {
-        console.log(x);
-      });
-    }
-  }
-  return $exports;
-}({});
-
 var ControlFlow = exports.ControlFlow = function ($exports) {
   var result = $exports.result = 2 > 3 ? "True" : "False";
   var i = (Object.defineProperty($exports, 'i', {
@@ -300,7 +300,7 @@ var ControlFlow = exports.ControlFlow = function ($exports) {
     }
   }), 0);
 
-  while (i < 10) {
+  while (i < 5) {
     _fableCore.String.fsFormat("ControlFlow.while:%A ")(function (x) {
       console.log(x);
     })(i);
@@ -308,7 +308,7 @@ var ControlFlow = exports.ControlFlow = function ($exports) {
     i = i + 1;
   }
 
-  for (var i_1 = 1; i_1 <= 20; i_1++) {
+  for (var i_1 = 1; i_1 <= 5; i_1++) {
     _fableCore.String.fsFormat("ControlFlow.for1:%A ")(function (x) {
       console.log(x);
     })(i_1);
@@ -352,23 +352,22 @@ var Classes = exports.Classes = function ($exports) {
     function MyClass(x, y) {
       _classCallCheck(this, MyClass);
 
-      this.y = y;
-      this._x = x;
-      this._y = this.y;
+      this.mx = x;
+      this.my = y;
     }
 
     _createClass(MyClass, [{
       key: "X",
       get: function get() {
-        return this._x;
+        return this.mx;
       }
     }, {
       key: "Y",
       get: function get() {
-        return this._y;
+        return this.my;
       },
       set: function set(value) {
-        this._y = this.y;
+        this.my = value;
       }
     }], [{
       key: ".ctor",

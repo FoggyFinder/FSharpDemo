@@ -5,18 +5,13 @@ let sourceFiles = [
     "main.fsx"
 ]
 
-let dependencies = [
-    "packages\\FSharp.Core\\lib\\net40\\FSharp.Core.dll"
-    "packages\\FSharp.Data\\lib\\net40\\FSharp.Data.dll"
-]
-
 Target "Restore" (fun _ ->
     Paket.Restore (fun x -> x)
 )
 
 Target "Build JS" (fun _ ->
 
-    let fableCompiler = "node_modules\\.bin\\fable.cmd"
+    let fableCompiler = "node_modules/.bin/fable.cmd"
     let fableArgs = "-m commonjs"
 
     let sources = sourceFiles |> String.concat ","
@@ -32,11 +27,6 @@ Target "Build JS" (fun _ ->
 
     if result.ExitCode <> 0 then
         failwithf "%A returned with a non-zero exit code" fableCompiler
-)
-
-Target "Copy Dependencies" (fun _ -> 
-    dependencies
-    |> FileHelper.Copy "build"
 )
 
 Target "Build EXE" (fun _ ->
