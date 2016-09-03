@@ -47,6 +47,81 @@ module Introduction =
     printfn "Introduction.integral: %A" (integral' (fun x -> x * x) 1.0 2.0 0.00000001 0.0)
 #endif
 
+module LetsTranscend =
+
+    // ------------------------------------------------------
+    // The imperative
+    // ------------------------------------------------------
+    //
+    // public int CalculateFibonacciSumImperative()
+    // {
+    //     var x1 = 0;
+    //     var x2 = 1;
+    //     var sum = 0;
+    //     var count = 0;
+    //
+    //     do
+    //     {
+    //         var newValue = x1 + x2;
+    //         x1 = x2;
+    //         x2 = newValue;
+    //
+    //         if (newValue % 2 == 0)
+    //         {
+    //             count++;
+    //             sum += newValue;
+    //         }
+    //     } while (count != 5);
+    //
+    //     return sum;
+    // }
+
+    // ------------------------------------------------------
+    // Partially functional
+    // ------------------------------------------------------
+    //
+    // public static IEnumerable<int> FibonacciSeq
+    // {
+    //     get
+    //     {
+    //         var x1 = 0;
+    //         var x2 = 1;
+    //
+    //         while (true)
+    //         {
+    //             var newValue = x1 + x2;
+    //             x1 = x2;
+    //             x2 = newValue;
+    //
+    //             yield return newValue;
+    //         }
+    //     }
+    // }
+    //
+    // var s = FibonacciSeq
+    //     .Where(x => x % 2 == 0)
+    //     .Take(5)
+    //     .Sum();
+
+    // The final solution
+    let fibonacciSeq = 
+        Seq.unfold 
+            (* Generator fn *)  (fun (x1, x2) -> Some (x1 + x2, (x2, x1 + x2))) 
+            (* Initial state *) (0, 1)
+            // 0     1     2     3     5     8
+            // Unfold parameters:
+            //             x1    x2
+            // Next return value:
+            //                         x1+x2
+            // New state:
+            //                   x1'   x2'
+
+    let fibonacciSum =
+        fibonacciSeq
+        |> Seq.filter (fun x -> x % 2 = 0)
+        |> Seq.take 5
+        |> Seq.sum
+
 module Types =
 
     let a = 100
