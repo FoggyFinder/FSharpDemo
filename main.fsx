@@ -8,7 +8,7 @@ module Introduction =
         let returnValue = arg1 * arg2
         returnValue
 
-    printfn "Introduction: %A" (myFunction 10 20)
+    printfn "Introduction.myFunction: %A" (myFunction 10 20)
 
     let rec factorial n =
         match n with
