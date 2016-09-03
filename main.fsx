@@ -558,6 +558,7 @@ module TypeProviders =
     simple.Age
 #endif
 
+#if FSC // JS has different native interop solution
 module NativeInteropModule =
 
     open System.Runtime.InteropServices
@@ -566,6 +567,7 @@ module NativeInteropModule =
     extern void Beep(int32 frequency, int32 length);
 
     Beep(700, 1500)
+#endif
 
 // :FsiShow
 // CTRL-w x
