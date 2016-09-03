@@ -15,7 +15,7 @@ module Introduction =
 
     printfn "Introduction.factorial(10): %A" (factorial 10)
 
-    let myList = [ 1; 2; 3; 4; 5]
+    let myList = [ 1; 2; 3; 4; 5 ]
 
     let rec reverseList list =
         match list with
@@ -182,9 +182,18 @@ module PatternMatching =
         | :? string as s -> printfn "PatternMatching.whatIsIt is string (%A)" s
         | :? int as i -> printfn "PatternMatching.whatIsIt is int (%A)" i
         | :? System.Exception as e -> printfn "PatternMatching.whatIsIt is exception (%A)" e
+        | _ -> printfn "PatternMatching.whatIsIt is unknown"
 
     whatIsIt myObj
 #endif
+
+module ActivePatterns =
+
+    let (|IsOdd|IsEven|) n = if n % 2 = 0 then IsEven else IsOdd
+
+    match 12 with
+        | IsEven -> printfn "ActivePatterns: 12 is even"
+        | IsOdd -> printfn "ActivePatterns: 12 is odd"
 
 module Structs =
 
@@ -226,18 +235,10 @@ module Operators =
     let (|>) x f = f x
 
     let result' = 
-        [1..10] 
+        [1..5] 
         |> List.map (fun x -> x * x)
         |> List.iter (printfn "%A")
 #endif
-
-module ActivePatterns =
-
-    let (|IsOdd|IsEven|) n = if n % 2 = 0 then IsEven else IsOdd
-
-    match 12 with
-        | IsEven -> printfn "ActivePatterns: 12 is even"
-        | IsOdd -> printfn "ActivePatterns: 12 is odd"
 
 module ControlFlow =
 
@@ -249,11 +250,11 @@ module ControlFlow =
 
     let mutable i = 0
 
-    while i < 10 do
+    while i < 5 do
         printfn "ControlFlow.while:%A " i
         i <- i + 1
 
-    for i = 1 to 20 do
+    for i = 1 to 5 do
         printfn "ControlFlow.for1:%A " i
 
     for i in [1..3..20] do
@@ -262,14 +263,14 @@ module ControlFlow =
 module Classes =
 
     type MyClass(x:int, y:int) =
-        let mutable _x = x
-        let mutable _y = y
+        let mutable mx = x
+        let mutable my = y
 
-        member this.X = _x
+        member this.X = mx
 
         member this.Y 
-            with get () = _y
-            and set (value:int) = _y <- y
+            with get () = my
+            and set (value:int) = my <- value
 
         new() = MyClass(0, 0)
 
@@ -354,7 +355,7 @@ module AsyncProgramming =
         return 100 + delay 
     }
 
-    [1..5]
+    [1..3]
     |> Seq.map myTask
     |> Async.Parallel
     |> Async.RunSynchronously 
