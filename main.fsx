@@ -1,4 +1,6 @@
+#if COMPILED
 namespace FSharpDemo
+#endif
 
 module Introduction =
 

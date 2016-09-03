@@ -96,7 +96,7 @@ var Enums = exports.Enums = function ($exports) {
     _classCallCheck(this, ColorEnum);
   };
 
-  _fableCore.Util.setInterfaces(ColorEnum.prototype, [], "FSharpDemo.Enums.ColorEnum");
+  _fableCore.Util.setInterfaces(ColorEnum.prototype, [], "Main.Enums.ColorEnum");
 
   return $exports;
 }({});
@@ -120,7 +120,7 @@ var DiscriminatedUnions = exports.DiscriminatedUnions = function ($exports) {
     return LoginMethods;
   }();
 
-  _fableCore.Util.setInterfaces(LoginMethods.prototype, ["FSharpUnion", "System.IEquatable"], "FSharpDemo.DiscriminatedUnions.LoginMethods");
+  _fableCore.Util.setInterfaces(LoginMethods.prototype, ["FSharpUnion", "System.IEquatable"], "Main.DiscriminatedUnions.LoginMethods");
 
   var myLogin = $exports.myLogin = new LoginMethods("UserIdAndPin", [274161, 6180]);
 
@@ -147,7 +147,7 @@ var DiscriminatedUnions = exports.DiscriminatedUnions = function ($exports) {
     return LoginMethods__;
   }();
 
-  _fableCore.Util.setInterfaces(LoginMethods__.prototype, ["FSharpUnion", "System.IEquatable", "System.IComparable"], "FSharpDemo.DiscriminatedUnions.LoginMethods''");
+  _fableCore.Util.setInterfaces(LoginMethods__.prototype, ["FSharpUnion", "System.IEquatable", "System.IComparable"], "Main.DiscriminatedUnions.LoginMethods''");
 
   return $exports;
 }({});
@@ -180,7 +180,7 @@ var OptionType = exports.OptionType = function ($exports) {
     return Option;
   }();
 
-  _fableCore.Util.setInterfaces(Option.prototype, ["FSharpUnion", "System.IEquatable", "System.IComparable"], "FSharpDemo.OptionType.Option");
+  _fableCore.Util.setInterfaces(Option.prototype, ["FSharpUnion", "System.IEquatable", "System.IComparable"], "Main.OptionType.Option");
 
   return $exports;
 }({});
@@ -256,7 +256,7 @@ var Structs = exports.Structs = function ($exports) {
     return Point2D;
   }();
 
-  _fableCore.Util.setInterfaces(Point2D.prototype, ["System.IEquatable", "System.IComparable"], "FSharpDemo.Structs.Point2D");
+  _fableCore.Util.setInterfaces(Point2D.prototype, ["System.IEquatable", "System.IComparable"], "Main.Structs.Point2D");
 
   var myPoint2D = $exports.myPoint2D = Point2D[".ctor"](2, 3);
 
@@ -379,7 +379,7 @@ var Classes = exports.Classes = function ($exports) {
     return MyClass;
   }();
 
-  _fableCore.Util.setInterfaces(MyClass.prototype, [], "FSharpDemo.Classes.MyClass");
+  _fableCore.Util.setInterfaces(MyClass.prototype, [], "Main.Classes.MyClass");
 
   var Base = $exports.Base = function () {
     function Base() {
@@ -401,7 +401,7 @@ var Classes = exports.Classes = function ($exports) {
     return Base;
   }();
 
-  _fableCore.Util.setInterfaces(Base.prototype, [], "FSharpDemo.Classes.Base");
+  _fableCore.Util.setInterfaces(Base.prototype, [], "Main.Classes.Base");
 
   var Derived = $exports.Derived = function (_Base) {
     _inherits(Derived, _Base);
@@ -424,7 +424,7 @@ var Classes = exports.Classes = function ($exports) {
     return Derived;
   }(Base);
 
-  _fableCore.Util.setInterfaces(Derived.prototype, [], "FSharpDemo.Classes.Derived");
+  _fableCore.Util.setInterfaces(Derived.prototype, [], "Main.Classes.Derived");
 
   var Derived2 = $exports.Derived2 = function (_Base2) {
     _inherits(Derived2, _Base2);
@@ -447,7 +447,7 @@ var Classes = exports.Classes = function ($exports) {
     return Derived2;
   }(Base);
 
-  _fableCore.Util.setInterfaces(Derived2.prototype, [], "FSharpDemo.Classes.Derived2");
+  _fableCore.Util.setInterfaces(Derived2.prototype, [], "Main.Classes.Derived2");
 
   return $exports;
 }({});
@@ -466,7 +466,7 @@ var Interfaces = exports.Interfaces = function ($exports) {
     return Derived;
   }();
 
-  _fableCore.Util.setInterfaces(Derived.prototype, ["FSharpDemo.Interfaces.IInterface1"], "FSharpDemo.Interfaces.Derived");
+  _fableCore.Util.setInterfaces(Derived.prototype, ["Main.Interfaces.IInterface1"], "Main.Interfaces.Derived");
 
   return $exports;
 }({});
@@ -494,19 +494,19 @@ var UnitsOfMeasure = exports.UnitsOfMeasure = function ($exports) {
     _classCallCheck(this, kg);
   };
 
-  _fableCore.Util.setInterfaces(kg.prototype, [], "FSharpDemo.UnitsOfMeasure.kg");
+  _fableCore.Util.setInterfaces(kg.prototype, [], "Main.UnitsOfMeasure.kg");
 
   var m = $exports.m = function m() {
     _classCallCheck(this, m);
   };
 
-  _fableCore.Util.setInterfaces(m.prototype, [], "FSharpDemo.UnitsOfMeasure.m");
+  _fableCore.Util.setInterfaces(m.prototype, [], "Main.UnitsOfMeasure.m");
 
   var s = $exports.s = function s() {
     _classCallCheck(this, s);
   };
 
-  _fableCore.Util.setInterfaces(s.prototype, [], "FSharpDemo.UnitsOfMeasure.s");
+  _fableCore.Util.setInterfaces(s.prototype, [], "Main.UnitsOfMeasure.s");
 
   var c = $exports.c = 300000000;
   var mass = $exports.mass = 1;
@@ -569,7 +569,7 @@ var ComputationalExpressions = exports.ComputationalExpressions = function ($exp
     return MaybeBuilder;
   }();
 
-  _fableCore.Util.setInterfaces(MaybeBuilder.prototype, [], "FSharpDemo.ComputationalExpressions.MaybeBuilder");
+  _fableCore.Util.setInterfaces(MaybeBuilder.prototype, [], "Main.ComputationalExpressions.MaybeBuilder");
 
   var maybe = $exports.maybe = new MaybeBuilder();
 
