@@ -558,6 +558,15 @@ module TypeProviders =
     simple.Age
 #endif
 
+module NativeInteropModule =
+
+    open System.Runtime.InteropServices
+
+    [<DllImport("kernel32.dll", EntryPoint="Beep")>]
+    extern void Beep(int32 frequency, int32 length);
+
+    Beep(700, 1500)
+
 // :FsiShow
 // CTRL-w x
 // CTRL-w CTRL-w
