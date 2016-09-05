@@ -106,7 +106,7 @@ module LetsTranscend =
     // }
 
     // ------------------------------------------------------
-    // Partially functional
+    // With iterator
     // ------------------------------------------------------
     //
     // public static IEnumerable<int> FibonacciSeq
@@ -132,8 +132,53 @@ module LetsTranscend =
     //     .Take(5)
     //     .Sum();
 
-    // The final solution
-    let fibonacciSeq = 
+    // ------------------------------------------------------
+    // Rewritten in F#
+    // ------------------------------------------------------
+
+    let fibonacciSeq1 = seq {
+        let mutable x1 = 1
+        let mutable x2 = 1
+
+        while true do
+            let temp = x2
+            x2 <- x1 + x2
+            x1 <- temp
+            yield x2
+    }
+
+    let fibonacciSum =
+        fibonacciSeq1
+        |> Seq.filter (fun x -> x % 2 = 0)
+        |> Seq.take 5
+        |> Seq.sum
+
+    // ------------------------------------------------------
+    // Recursive sequence
+    // ------------------------------------------------------
+
+    let fibonacciSeq2 =
+        let rec fibseq n1 n2 = seq { 
+                let n0 = n1 + n2 
+                yield n0
+                yield! fibseq n0 n1 
+        }
+        
+        seq { 
+            yield! (fibseq 0 1)
+        }
+
+    let fibonacciSum2 =
+        fibonacciSeq2
+        |> Seq.filter (fun x -> x % 2 = 0)
+        |> Seq.take 5
+        |> Seq.sum
+
+    // ------------------------------------------------------
+    // F# Core lib solution
+    // ------------------------------------------------------
+
+    let fibonacciSeq' = 
         Seq.unfold 
             (* Generator fn *)  (fun (x1, x2) -> Some (x1 + x2, (x2, x1 + x2))) 
             (* Initial state *) (0, 1)
@@ -145,13 +190,13 @@ module LetsTranscend =
             // New state:
             //                   x1'   x2'
 
-    let fibonacciSum =
-        fibonacciSeq
+    let fibonacciSum' =
+        fibonacciSeq'
         |> Seq.filter (fun x -> x % 2 = 0)
         |> Seq.take 5
         |> Seq.sum
 
-    printfn "LetsTranscend.fibonacciSum: %A" fibonacciSum
+    printfn "LetsTranscend.fibonacciSum: %A" fibonacciSum'
 
 module Types =
 
