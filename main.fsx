@@ -27,7 +27,7 @@ module Introduction =
     printfn "Introduction.reverseList: %A" (reverseList myList)
 
 #if FSC // JS doesn't have good tail-recursion
-    // y = integral f(x) = x^2 from 1.0 to to 2.0 
+    // y = integral f(x) = x^2 from 1.0 to 2.0 
     // f(x) = x^2
     // F(X) = x^3/3
     // y = F(2) - F(1) = 8/3 - 1/3 = 7/3
