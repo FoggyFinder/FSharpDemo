@@ -227,7 +227,7 @@ module Collections =
     open FSharp.Collections
 
     let intList = [1; 2; 3; 4; 5]
-    let intList': List<int> = [1; 2; 3; 4; 5]
+    let intList': List<int> = [for x in 1..5 -> x * x]
 
     printfn "Collections.rev %A" (List.rev intList)
     printfn "Collections.filter %A" (List.filter (fun i -> i % 2 = 0) intList)
