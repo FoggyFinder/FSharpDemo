@@ -494,11 +494,25 @@ module Exceptions =
 #endif
 
 module Events =
+
+    // F# events
     let myEvent = Event<string>()
     let publishedEvent = myEvent.Publish
     publishedEvent.Add(function t -> printfn "Events: %A" t)
 
     myEvent.Trigger("Data")
+
+    // CLI events
+    open System
+
+    let myCliEvent = Event<_, _>()
+    [<CLIEvent>]
+    let publishedCliEvent = myCliEvent.Publish
+
+    let handler = new Handler<_>(fun sender args -> printfn "Events: %A" (sender.ToString()))
+    publishedCliEvent.AddHandler(handler)
+
+    myCliEvent.Trigger(new Object(), new EventArgs())
 
 module UnitsOfMeasure =
 
