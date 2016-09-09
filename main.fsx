@@ -502,17 +502,27 @@ module Events =
 
     myEvent.Trigger("Data")
 
+#if FSC // JS doesn't support CLI events
     // CLI events
     open System
 
+    type MyEventArgs() =
+        inherit EventArgs()
+        override this.ToString() =
+            "TYPE = MyEventArgs"
+
     let myCliEvent = Event<_, _>()
+
     [<CLIEvent>]
     let publishedCliEvent = myCliEvent.Publish
 
-    let handler = new Handler<_>(fun sender args -> printfn "Events: %A" (sender.ToString()))
+    let handler = new Handler<_>(fun (sender: obj) (args: MyEventArgs) -> printfn "Events: %A" (args.ToString()))
     publishedCliEvent.AddHandler(handler)
+    
+    publishedCliEvent.Add(fun args -> printfn "Events: %A" (args.ToString()))
 
-    myCliEvent.Trigger(new Object(), new EventArgs())
+    myCliEvent.Trigger(new Object(), new MyEventArgs())
+#endif
 
 module UnitsOfMeasure =
 

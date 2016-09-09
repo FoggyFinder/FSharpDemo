@@ -47,17 +47,55 @@ var Introduction = exports.Introduction = function ($exports) {
 }({});
 
 var LetsTranscend = exports.LetsTranscend = function ($exports) {
-  var fibonacciSeq = $exports.fibonacciSeq = _fableCore.Seq.unfold(function (tupledArg) {
-    return [tupledArg[0] + tupledArg[1], [tupledArg[1], tupledArg[0] + tupledArg[1]]];
-  }, [0, 1]);
+  var fibonacciSeq1 = $exports.fibonacciSeq1 = _fableCore.Seq.delay(function (unitVar) {
+    var x1 = 1;
+    var x2 = 1;
+    return _fableCore.Seq.enumerateWhile(function (unitVar_1) {
+      return true;
+    }, _fableCore.Seq.delay(function (unitVar_1) {
+      var temp = x2;
+      x2 = x1 + x2;
+      x1 = temp;
+      return _fableCore.Seq.singleton(x2);
+    }));
+  });
 
   var fibonacciSum = $exports.fibonacciSum = _fableCore.Seq.sum(_fableCore.Seq.take(5, _fableCore.Seq.filter(function (x) {
     return x % 2 === 0;
-  }, fibonacciSeq)));
+  }, fibonacciSeq1)));
+
+  var fibonacciSeq2 = $exports.fibonacciSeq2 = function () {
+    var fibseq = function fibseq(n1) {
+      return function (n2) {
+        return _fableCore.Seq.delay(function (unitVar) {
+          var n0 = n1 + n2;
+          return _fableCore.Seq.append(_fableCore.Seq.singleton(n0), _fableCore.Seq.delay(function (unitVar_1) {
+            return fibseq(n0)(n1);
+          }));
+        });
+      };
+    };
+
+    return _fableCore.Seq.delay(function (unitVar) {
+      return fibseq(0)(1);
+    });
+  }();
+
+  var fibonacciSum2 = $exports.fibonacciSum2 = _fableCore.Seq.sum(_fableCore.Seq.take(5, _fableCore.Seq.filter(function (x) {
+    return x % 2 === 0;
+  }, fibonacciSeq2)));
+
+  var fibonacciSeq_ = $exports["fibonacciSeq'"] = _fableCore.Seq.unfold(function (tupledArg) {
+    return [tupledArg[0] + tupledArg[1], [tupledArg[1], tupledArg[0] + tupledArg[1]]];
+  }, [0, 1]);
+
+  var fibonacciSum_ = $exports["fibonacciSum'"] = _fableCore.Seq.sum(_fableCore.Seq.take(5, _fableCore.Seq.filter(function (x) {
+    return x % 2 === 0;
+  }, fibonacciSeq_)));
 
   _fableCore.String.fsFormat("LetsTranscend.fibonacciSum: %A")(function (x) {
     console.log(x);
-  })(fibonacciSum);
+  })(fibonacciSum_);
 
   return $exports;
 }({});
@@ -81,7 +119,11 @@ var TypeAliases = exports.TypeAliases = function ($exports) {
 var Collections = exports.Collections = function ($exports) {
   var intList = $exports.intList = _fableCore.List.ofArray([1, 2, 3, 4, 5]);
 
-  var intList_ = $exports["intList'"] = _fableCore.List.ofArray([1, 2, 3, 4, 5]);
+  var intList_ = $exports["intList'"] = _fableCore.Seq.toList(_fableCore.Seq.delay(function (unitVar) {
+    return _fableCore.Seq.map(function (x) {
+      return x * x;
+    }, _fableCore.Seq.range(1, 5));
+  }));
 
   _fableCore.String.fsFormat("Collections.rev %A")(function (x) {
     console.log(x);
@@ -273,9 +315,9 @@ var ActivePatterns = exports.ActivePatterns = function ($exports) {
 
   {
     var matchValue = 12;
-    var activePatternResult127 = $IsOdd$IsEven$(matchValue);
+    var activePatternResult139 = $IsOdd$IsEven$(matchValue);
 
-    if (activePatternResult127.Case === "Choice1Of2") {
+    if (activePatternResult139.Case === "Choice1Of2") {
       _fableCore.String.fsFormat("ActivePatterns: 12 is odd")(function (x) {
         console.log(x);
       });
