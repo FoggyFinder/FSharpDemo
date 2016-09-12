@@ -10,7 +10,6 @@ Target "Restore" (fun _ ->
 )
 
 Target "Build JS" (fun _ ->
-
     let fableCompiler = "node_modules/.bin/fable.cmd"
     let fableArgs = "-m commonjs"
 
