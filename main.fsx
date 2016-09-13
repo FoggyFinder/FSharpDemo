@@ -249,6 +249,11 @@ module Collections =
 
     printfn "Collections.Seq %A" intSeq
 
+    let mySet1 = set ["1"; "2"; "3"]
+    let mySet2 = set ["2"; "3"; "4"]
+    let union = Set.union mySet1 mySet2
+    let intersection = Set.intersect mySet1 mySet2
+
 module TuplesAndRecords =
     open System
 

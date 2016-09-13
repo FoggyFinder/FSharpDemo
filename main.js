@@ -173,6 +173,18 @@ var Collections = exports.Collections = function ($exports) {
     console.log(x);
   })(intSeq);
 
+  var mySet1 = $exports.mySet1 = _fableCore.Set.create(_fableCore.List.ofArray(["1", "2", "3"]), new _fableCore.GenericComparer(function (x, y) {
+    return x < y ? -1 : x > y ? 1 : 0;
+  }));
+
+  var mySet2 = $exports.mySet2 = _fableCore.Set.create(_fableCore.List.ofArray(["2", "3", "4"]), new _fableCore.GenericComparer(function (x, y) {
+    return x < y ? -1 : x > y ? 1 : 0;
+  }));
+
+  var union = $exports.union = _fableCore.Set.union(mySet1, mySet2);
+
+  var intersection = $exports.intersection = _fableCore.Set.intersect(mySet1, mySet2);
+
   return $exports;
 }({});
 
