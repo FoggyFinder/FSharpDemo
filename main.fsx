@@ -571,6 +571,11 @@ module AsyncProgramming =
     counterThread.Post(5)
     counterThread.Post(-20)
 
+#if FSC // JS doesn't support Code Quotations
+module CodeQuotations =
+    let myFnExpre = <@ fun x y -> x + y @>
+#endif
+
 module ComputationalExpressions =
 
     let divideBy bottom top =
@@ -633,13 +638,6 @@ module TypeProviders =
 
     input.Rows
     |> Seq.iter (fun row -> printfn "%A|%A|%A" row.First row.Second row.Third)
-
-[<EntryPoint>]
-let main argv =
-    use m = MyCsv()
-    m.Rows
-    |> Seq.iter (fun x -> printfn "X: %A Y: %A Z: %A" x.P x.S x.T)
-
 #endif
 
 #if FSC // JS has different native interop solution
