@@ -573,7 +573,8 @@ module AsyncProgramming =
 
 #if FSC // JS doesn't support Code Quotations
 module CodeQuotations =
-    let myFnExpre = <@ fun x y -> x + y @>
+
+    let myFnExpr = <@ fun x y -> x + y @>
 #endif
 
 module ComputationalExpressions =
