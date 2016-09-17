@@ -624,12 +624,22 @@ module TypeProviders =
 
     open FSharp.Data
 
-    type Simple = JsonProvider<""" { "name":"John", "age":94 } """>
-    let simple = Simple.Parse(""" { "name":"Tomas", "age":4 } """)
+    // CSV provider
+    type MyCsv = CsvProvider<"data/input.csv">
 
-    simple
-    simple.Name
-    simple.Age
+    let input = MyCsv()
+
+    input.Headers |> printfn "%A"
+
+    input.Rows
+    |> Seq.iter (fun row -> printfn "%A|%A|%A" row.First row.Second row.Third)
+
+[<EntryPoint>]
+let main argv =
+    use m = MyCsv()
+    m.Rows
+    |> Seq.iter (fun x -> printfn "X: %A Y: %A Z: %A" x.P x.S x.T)
+
 #endif
 
 #if FSC // JS has different native interop solution
