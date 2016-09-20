@@ -10,12 +10,22 @@ module Introduction =
 
     printfn "Introduction.myFunction: %A" (myFunction 10 20)
 
+    let lambdaFunction = fun x y -> x + y
+
     let rec factorial n =
         match n with
         | 0 -> 1
         | _ -> n * factorial (n - 1)
 
     printfn "Introduction.factorial(10): %A" (factorial 10)
+
+    let rec toBinaryString value =
+        match value with 
+        | 0 -> "0"
+        | 1 -> "1"
+        | x -> (toBinaryString (x / 2)) + string (x % 2)
+
+    printfn "Introduction.toBinaryString(13): %A" (toBinaryString 13)
 
     let myList = [ 1; 2; 3; 4; 5 ]
 
