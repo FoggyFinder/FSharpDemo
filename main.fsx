@@ -665,6 +665,7 @@ module TypeProviders =
     type MyCsv = CsvProvider<"data/input.csv">
 
     let input = MyCsv()
+    // let otherInput = MyCsv.Load(...)
 
     input.Headers |> printfn "TypeProviders: %A"
 
