@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ComputationalExpressions = exports.AsyncProgramming = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.ControlFlow = exports.FunctionsAndCurrying = exports.Structs = exports.ActivePatterns = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.LetsTranscend = exports.Introduction = undefined;
+exports.ComputationalExpressions = exports.AsyncProgramming = exports.UnitsOfMeasure = exports.Events = exports.Exceptions = exports.Interfaces = exports.Classes = exports.Structs = exports.ControlFlow = exports.FunctionsAndCurrying = exports.ActivePatterns = exports.PatternMatching = exports.OptionType = exports.Generics = exports.DiscriminatedUnions = exports.Enums = exports.TuplesAndRecords = exports.Collections = exports.TypeAliases = exports.Types = exports.LetsTranscend = exports.Introduction = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -25,6 +25,17 @@ var Introduction = exports.Introduction = function ($exports) {
     console.log(x);
   })(myFunction(10, 20));
 
+  var lambdaFunction = $exports.lambdaFunction = function lambdaFunction(x, y) {
+    return x + y;
+  };
+
+  var partiallyAppliedFunction = $exports.partiallyAppliedFunction = function partiallyAppliedFunction() {
+    var x = 1;
+    return function (y) {
+      return lambdaFunction(x, y);
+    };
+  };
+
   var factorial = $exports.factorial = function factorial(n) {
     return n === 0 ? 1 : n * factorial(n - 1);
   };
@@ -32,6 +43,14 @@ var Introduction = exports.Introduction = function ($exports) {
   _fableCore.String.fsFormat("Introduction.factorial(10): %A")(function (x) {
     console.log(x);
   })(factorial(10));
+
+  var toBinaryString = $exports.toBinaryString = function toBinaryString(value) {
+    return value === 0 ? "0" : value === 1 ? "1" : toBinaryString(~~(value / 2)) + String(value % 2);
+  };
+
+  _fableCore.String.fsFormat("Introduction.toBinaryString(13): %A")(function (x) {
+    console.log(x);
+  })(toBinaryString(13));
 
   var myList = $exports.myList = _fableCore.List.ofArray([1, 2, 3, 4, 5]);
 
@@ -327,9 +346,9 @@ var ActivePatterns = exports.ActivePatterns = function ($exports) {
 
   {
     var matchValue = 12;
-    var activePatternResult139 = $IsOdd$IsEven$(matchValue);
+    var activePatternResult143 = $IsOdd$IsEven$(matchValue);
 
-    if (activePatternResult139.Case === "Choice1Of2") {
+    if (activePatternResult143.Case === "Choice1Of2") {
       _fableCore.String.fsFormat("ActivePatterns: 12 is odd")(function (x) {
         console.log(x);
       });
@@ -339,33 +358,6 @@ var ActivePatterns = exports.ActivePatterns = function ($exports) {
       });
     }
   }
-  return $exports;
-}({});
-
-var Structs = exports.Structs = function ($exports) {
-  var Point2D = $exports.Point2D = function () {
-    function Point2D() {
-      _classCallCheck(this, Point2D);
-    }
-
-    _createClass(Point2D, null, [{
-      key: ".ctor",
-      value: function ctor(x, y) {
-        return new Point2D(x, y);
-      }
-    }]);
-
-    return Point2D;
-  }();
-
-  _fableCore.Util.setInterfaces(Point2D.prototype, ["System.IEquatable", "System.IComparable"], "Main.Structs.Point2D");
-
-  var myPoint2D = $exports.myPoint2D = Point2D[".ctor"](2, 3);
-
-  _fableCore.String.fsFormat("Structs.myPoint2D: {%A %A}")(function (x) {
-    console.log(x);
-  })(myPoint2D.X)(myPoint2D.Y);
-
   return $exports;
 }({});
 
@@ -446,6 +438,33 @@ var ControlFlow = exports.ControlFlow = function ($exports) {
       }
     }
   }
+  return $exports;
+}({});
+
+var Structs = exports.Structs = function ($exports) {
+  var Point2D = $exports.Point2D = function () {
+    function Point2D() {
+      _classCallCheck(this, Point2D);
+    }
+
+    _createClass(Point2D, null, [{
+      key: ".ctor",
+      value: function ctor(x, y) {
+        return new Point2D(x, y);
+      }
+    }]);
+
+    return Point2D;
+  }();
+
+  _fableCore.Util.setInterfaces(Point2D.prototype, ["System.IEquatable", "System.IComparable"], "Main.Structs.Point2D");
+
+  var myPoint2D = $exports.myPoint2D = Point2D[".ctor"](2, 3);
+
+  _fableCore.String.fsFormat("Structs.myPoint2D: {%A %A}")(function (x) {
+    console.log(x);
+  })(myPoint2D.X)(myPoint2D.Y);
+
   return $exports;
 }({});
 

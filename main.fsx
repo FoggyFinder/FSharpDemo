@@ -666,10 +666,10 @@ module TypeProviders =
 
     let input = MyCsv()
 
-    input.Headers |> printfn "%A"
+    input.Headers |> printfn "TypeProviders: %A"
 
     input.Rows
-    |> Seq.iter (fun row -> printfn "%A|%A|%A" row.First row.Second row.Third)
+    |> Seq.iter (fun row -> printfn "TypeProviders: %A|%A|%A" row.First row.Second row.Third)
 #endif
 
 // ---------------------------------------------------------------------------
