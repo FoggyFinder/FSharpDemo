@@ -2,6 +2,27 @@
 namespace FSharpDemo
 #endif
 
+// ---------------------------------------------------------------------------
+// TABLE OF CONTENTS
+//
+//  1. Introduction
+//  2. Let's transcend: from imperative to functional programming
+//  3. Basic types
+//  4. Functions
+//  5. Object-oriented programming
+//  6. Exception handling anf raising
+//  7. Events
+//  8. Unit of measure in
+//  9. Asynchron programming
+// 10. Type providers
+// 11. Native interop
+// 12. Other interesting topics: code quotations and computational expressions
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// 1. Introduction
+// ---------------------------------------------------------------------------
+
 module Introduction =
 
     let myFunction arg1 arg2 =
@@ -89,7 +110,14 @@ module Introduction =
 
 #endif
 
+// ---------------------------------------------------------------------------
+// 2. Let's transcend: from imperative to functional programming
+// ---------------------------------------------------------------------------
+
 module LetsTranscend =
+
+    // Q: What is the sum of the first 5 even Fibonacci numbers?
+    // A: 798.
 
     // ------------------------------------------------------
     // The imperative
@@ -212,6 +240,10 @@ module LetsTranscend =
 
     printfn "LetsTranscend.fibonacciSum: %A" fibonacciSum'
 
+// ---------------------------------------------------------------------------
+// 3. Basic types
+// ---------------------------------------------------------------------------
+
 module Types =
 
     let a = 100
@@ -221,6 +253,10 @@ module Types =
 #if FSC // JS doesn't have decimal and biginteger
     let d = 100M
     let e = 100I (* BigInteger *)
+
+    // Fermat little theorem: (a^p) mod p = p
+    let p = bigint.ModPow(e, 65537I,  65537I)
+    let q = bigint.Pow (e, 65537)
 #endif
 
     let f = System.DateTime.Now
@@ -378,6 +414,10 @@ module ActivePatterns =
         | IsEven -> printfn "ActivePatterns: 12 is even"
         | IsOdd -> printfn "ActivePatterns: 12 is odd"
 
+// ---------------------------------------------------------------------------
+// 4. Functions
+// ---------------------------------------------------------------------------
+
 module FunctionsAndCurrying =
 
     let myfunction arg1 arg2 = arg1 + arg2
@@ -429,6 +469,10 @@ module ControlFlow =
 
     for i in [1..3..20] do
         printfn "ControlFlow.for2:%A " i
+
+// ---------------------------------------------------------------------------
+// 5. Object-oriented programming in F#
+// ---------------------------------------------------------------------------
 
 module Structs =
 
@@ -496,6 +540,10 @@ module Interfaces =
             member this.MemberFunc2 z = 120M
 #endif
 
+// ---------------------------------------------------------------------------
+// 6. Exception handling anf raising
+// ---------------------------------------------------------------------------
+
 module Exceptions =
     // failwith -> System.Exception
     // nullArg -> System.NullArgumentException
@@ -517,6 +565,10 @@ module Exceptions =
 #else
     ()
 #endif
+
+// ---------------------------------------------------------------------------
+// 7. Events
+// ---------------------------------------------------------------------------
 
 module Events =
 
@@ -549,6 +601,10 @@ module Events =
     myCliEvent.Trigger(new Object(), new MyEventArgs())
 #endif
 
+// ---------------------------------------------------------------------------
+// 8. Unit of measure
+// ---------------------------------------------------------------------------
+
 module UnitsOfMeasure =
 
     [<Measure>] type kg
@@ -560,6 +616,10 @@ module UnitsOfMeasure =
     let E = mass*c*c
 
     printfn "UnitsOfMeasure.E: %A" E
+
+// ---------------------------------------------------------------------------
+// 9. Asynchron programming F#
+// ---------------------------------------------------------------------------
 
 module AsyncProgramming =
 
@@ -591,6 +651,10 @@ module AsyncProgramming =
     counterThread.Post(5)
     counterThread.Post(-20)
 
+// ---------------------------------------------------------------------------
+// 10. Type providers
+// ---------------------------------------------------------------------------
+
 #if FSC // JS doesn't support assembly refeences and type providers
 #reference "packages/FSharp.Data/lib/net40/FSharp.Data.dll"
 module TypeProviders =
@@ -608,6 +672,10 @@ module TypeProviders =
     |> Seq.iter (fun row -> printfn "%A|%A|%A" row.First row.Second row.Third)
 #endif
 
+// ---------------------------------------------------------------------------
+// 11. Native interop
+// ---------------------------------------------------------------------------
+
 #if FSC // JS has different native interop solution
 module NativeInteropModule =
 
@@ -618,6 +686,10 @@ module NativeInteropModule =
 
     Beep(700, 1500)
 #endif
+
+// ---------------------------------------------------------------------------
+// Other interesting topics: code quotations and computational expressions
+// ---------------------------------------------------------------------------
 
 #if FSC // JS doesn't support Code Quotations
 module CodeQuotations =
@@ -672,7 +744,11 @@ module ComputationalExpressions =
     let good' = divideByWorkflow' 12 3 2 1
     let bad' = divideByWorkflow' 12 3 0 1    
 
+// ----------------------------------------------------------------------------
+// vim key combinations
+// ----------------------------------------------------------------------------
 // :FsiShow
 // CTRL-w x
 // CTRL-w CTRL-w
 // -i -d
+// ----------------------------------------------------------------------------
