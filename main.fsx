@@ -12,7 +12,7 @@ namespace FSharpDemo
 //  5. Object-oriented programming
 //  6. Exception handling and raising
 //  7. Events
-//  8. Unit of measure in
+//  8. Unit of measure
 //  9. Asynchron programming
 // 10. Type providers
 // 11. Native interop
