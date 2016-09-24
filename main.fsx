@@ -11,7 +11,9 @@ module Introduction =
     printfn "Introduction.myFunction: %A" (myFunction 10 20)
 
     let lambdaFunction = fun x y -> x + y
-    let partiallyAppliedFunction = lambdaFunction 1
+
+    let partiallyAppliedFunction () = 
+        lambdaFunction 1
 
     let rec factorial n =
         match n with
