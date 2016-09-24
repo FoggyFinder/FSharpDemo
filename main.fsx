@@ -10,7 +10,7 @@ namespace FSharpDemo
 //  3. Basic types
 //  4. Functions
 //  5. Object-oriented programming
-//  6. Exception handling anf raising
+//  6. Exception handling and raising
 //  7. Events
 //  8. Unit of measure in
 //  9. Asynchron programming
@@ -541,7 +541,7 @@ module Interfaces =
 #endif
 
 // ---------------------------------------------------------------------------
-// 6. Exception handling anf raising
+// 6. Exception handling and raising
 // ---------------------------------------------------------------------------
 
 module Exceptions =
