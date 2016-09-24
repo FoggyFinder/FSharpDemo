@@ -195,6 +195,7 @@ module LetsTranscend =
         Seq.unfold 
             (* Generator fn *)  (fun (x1, x2) -> Some (x1 + x2, (x2, x1 + x2))) 
             (* Initial state *) (0, 1)
+
             // 0     1     2     3     5     8
             // Unfold parameters:
             //             x1    x2
@@ -219,7 +220,7 @@ module Types =
 
 #if FSC // JS doesn't have decimal and biginteger
     let d = 100M
-    let e = 100I
+    let e = 100I (* BigInteger *)
 #endif
 
     let f = System.DateTime.Now
@@ -274,6 +275,8 @@ module TuplesAndRecords =
 
 #if FSC // JS doesn't have 64-bit integer
     let result = Int64.TryParse("100")
+
+    // C# 6 feature
     let (success, value) = result
 
     printfn "TuplesAndRecords.result %A" result
@@ -290,6 +293,7 @@ module Enums =
         | Green = 2
         | Blue = 4
 
+// C# 8 feature
 module DiscriminatedUnions =
 
     [<NoComparison>]
@@ -326,6 +330,7 @@ module OptionType =
     type OptionalStringType = string option
     type OptionalDateTimeType = Option<System.DateTime>
 
+// C# 7 feature
 module PatternMatching =
 
     open System
@@ -372,19 +377,6 @@ module ActivePatterns =
     match 12 with
         | IsEven -> printfn "ActivePatterns: 12 is even"
         | IsOdd -> printfn "ActivePatterns: 12 is odd"
-
-module Structs =
-
-    type Point2D =
-        struct
-            val X: float
-            val Y: float
-            new(x, y) = { X = x; Y = y }
-        end
-
-    let myPoint2D = Point2D(2.0, 3.0)
-
-    printfn "Structs.myPoint2D: {%A %A}" myPoint2D.X myPoint2D.Y
 
 module FunctionsAndCurrying =
 
@@ -438,9 +430,22 @@ module ControlFlow =
     for i in [1..3..20] do
         printfn "ControlFlow.for2:%A " i
 
+module Structs =
+
+    type Point2D =
+        struct
+            val X: float
+            val Y: float
+            new(x, y) = { X = x; Y = y }
+        end
+
+    let myPoint2D = Point2D(2.0, 3.0)
+
+    printfn "Structs.myPoint2D: {%A %A}" myPoint2D.X myPoint2D.Y
+
 module Classes =
 
-    type MyClass(x:int, y:int) =
+    type MyClass(x:int, y:int) = class
         let mutable mx = x
         let mutable my = y
 
@@ -456,6 +461,7 @@ module Classes =
             let firstArg = defaultArg values 100
             let secondArg = defaultArg values 200
             MyClass(firstArg, secondArg)
+    end
 
     // Inheritance
     type Base() =
@@ -474,10 +480,11 @@ module Classes =
 
 module Interfaces =
 
-    type IInterface1 =
+    type IInterface1 = interface
         abstract member MemberFunc1 : int -> string -> unit
+    end
 
-    type IInterface2 =
+    type IInterface2 = (* interface-end can be omitted *)
         abstract member MemberFunc2 : int64 -> decimal
 
     type Derived() =
@@ -491,8 +498,8 @@ module Interfaces =
 
 module Exceptions =
     // failwith -> System.Exception
-    // invalidArg -> System.ArgumentException
     // nullArg -> System.NullArgumentException
+    // invalidArg -> System.ArgumentException
     // invalidOp -> System.InvalidOperationException
 
 #if FSC
@@ -584,6 +591,34 @@ module AsyncProgramming =
     counterThread.Post(5)
     counterThread.Post(-20)
 
+#if FSC // JS doesn't support assembly refeences and type providers
+#reference "packages/FSharp.Data/lib/net40/FSharp.Data.dll"
+module TypeProviders =
+
+    open FSharp.Data
+
+    // CSV provider
+    type MyCsv = CsvProvider<"data/input.csv">
+
+    let input = MyCsv()
+
+    input.Headers |> printfn "%A"
+
+    input.Rows
+    |> Seq.iter (fun row -> printfn "%A|%A|%A" row.First row.Second row.Third)
+#endif
+
+#if FSC // JS has different native interop solution
+module NativeInteropModule =
+
+    open System.Runtime.InteropServices
+
+    [<DllImport("kernel32.dll", EntryPoint="Beep")>]
+    extern void Beep(int32 frequency, int32 length);
+
+    Beep(700, 1500)
+#endif
+
 #if FSC // JS doesn't support Code Quotations
 module CodeQuotations =
 
@@ -636,34 +671,6 @@ module ComputationalExpressions =
 
     let good' = divideByWorkflow' 12 3 2 1
     let bad' = divideByWorkflow' 12 3 0 1    
-
-#if FSC // JS doesn't support assembly refeences and type providers
-#reference "packages/FSharp.Data/lib/net40/FSharp.Data.dll"
-module TypeProviders =
-
-    open FSharp.Data
-
-    // CSV provider
-    type MyCsv = CsvProvider<"data/input.csv">
-
-    let input = MyCsv()
-
-    input.Headers |> printfn "%A"
-
-    input.Rows
-    |> Seq.iter (fun row -> printfn "%A|%A|%A" row.First row.Second row.Third)
-#endif
-
-#if FSC // JS has different native interop solution
-module NativeInteropModule =
-
-    open System.Runtime.InteropServices
-
-    [<DllImport("kernel32.dll", EntryPoint="Beep")>]
-    extern void Beep(int32 frequency, int32 length);
-
-    Beep(700, 1500)
-#endif
 
 // :FsiShow
 // CTRL-w x
