@@ -636,6 +636,7 @@ module AsyncProgramming =
 
 #if INTERACTIVE
 #reference @"..\packages\FSharp.Data.2.3.2\lib\net40\FSharp.Data.dll"
+#reference @"..\packages\FSharp.Data.TypeProviders.5.0.0.2\lib\net40\FSharp.Data.TypeProviders.dll"
 #endif
 
 module TypeProviders =
@@ -667,7 +668,7 @@ module TypeProviders =
     tracker.Html.CssSelect("div#footer")
     |> Seq.iter (fun item -> printfn "TypeProviders.HTML2: %A" (item.InnerText()))
 
-//    // XML provider
+    // XML provider
 //    type HupRssProvider = XmlProvider<"""http://hup.hu/node/feed""">
 //    let rssFeed = HupRssProvider.Load("""http://hup.hu/node/feed""")
 //
