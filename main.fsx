@@ -719,8 +719,26 @@ module NativeInteropModule =
 
 #if FSC // JS doesn't support Code Quotations
 module CodeQuotations =
+    open FSharp
+    open FSharp.Quotations
+    open FSharp.Quotations.Patterns
+    open FSharp.Quotations.DerivedPatterns
 
     let myFnExpr = <@ fun x y -> x + y @>
+
+    match myFnExpr with
+    | Lambda (param1, body1) -> 
+        printfn "CodeQuotations 1: %A" param1
+        match body1 with
+        | Lambda (param2, body2) -> 
+            printfn "CodeQuotations 2: %A" param2
+            match body2 with
+            | Call (_, methodId, exprList) -> 
+                printfn "CodeQuotations 3: %A" methodId
+                exprList |> Seq.iter (printfn "CodeQuotations 3: %A")
+            | _ -> ()
+        | _ -> ()
+    | _ -> ()
 #endif
 
 module ComputationalExpressions =
