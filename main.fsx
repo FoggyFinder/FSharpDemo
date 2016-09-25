@@ -786,7 +786,7 @@ module ComputationalExpressions =
         }
 
     let good' = divideByWorkflow' 12 3 2 1
-    let bad' = divideByWorkflow' 12 3 0 1    
+    let bad' = divideByWorkflow' 12 3 0 1
 
 // ----------------------------------------------------------------------------
 // vim key combinations
