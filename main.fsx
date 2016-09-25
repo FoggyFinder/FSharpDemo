@@ -681,6 +681,10 @@ module TypeProviders =
     |> Seq.map (fun row -> row.Tartalom)
     |> Seq.distinct
     |> Seq.iter (printfn "%A")
+
+    // Non-typed access
+    tracker.Html.CssSelect("div#footer")
+    |> Seq.iter (fun item -> printfn "%A" (item.InnerText()))
 #endif
 
 // ---------------------------------------------------------------------------
