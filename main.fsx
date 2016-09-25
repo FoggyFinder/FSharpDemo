@@ -107,7 +107,6 @@ module Introduction =
     //     }
     //     return accumulator;
     // }
-
 #endif
 
 // ---------------------------------------------------------------------------
@@ -344,7 +343,7 @@ module DiscriminatedUnions =
     type UserNameType = string
     type PasswordType = string
 
-    type LoginMethods'' =
+    type LoginMethods' =
     | UserNameAndPassword of UserNameType * PasswordType
 
 module Generics = ()
@@ -392,10 +391,10 @@ module PatternMatching =
         | null -> true
         | _ -> false
 
+#if FSC // JS doesn't have System.Exception
     // Pattern matching with types
     let myObj = "Hello"
 
-#if FSC // JS doesn't have System.Exception
     let whatIsIt (x:obj) =
         match x with
         | :? string as s -> printfn "PatternMatching.whatIsIt is string (%A)" s
@@ -593,10 +592,10 @@ module Events =
     [<CLIEvent>]
     let publishedCliEvent = myCliEvent.Publish
 
-    let handler = new Handler<_>(fun (sender: obj) (args: MyEventArgs) -> printfn "Events: %A" (args.ToString()))
+    let handler = new Handler<_>(fun (sender: obj) (args: MyEventArgs) -> printfn "Events A: %A" (args.ToString()))
     publishedCliEvent.AddHandler(handler)
     
-    publishedCliEvent.Add(fun args -> printfn "Events: %A" (args.ToString()))
+    publishedCliEvent.Add(fun args -> printfn "Events B: %A" (args.ToString()))
 
     myCliEvent.Trigger(new Object(), new MyEventArgs())
 #endif
