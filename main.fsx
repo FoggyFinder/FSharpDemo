@@ -710,7 +710,7 @@ module NativeInteropModule =
     try
         Beep(700, 1500)
     with
-    | :? System.EntryPointNotFoundException -> printfn "Entry point could not be found."
+    | :? System.EntryPointNotFoundException -> printfn "NativeInteropModule: Entry point could not be found."
 #endif
 
 // ---------------------------------------------------------------------------
