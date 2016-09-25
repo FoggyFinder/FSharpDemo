@@ -645,7 +645,7 @@ module TypeProviders =
     // CSV provider
     type MyCsv = CsvProvider<"data/input.csv">
 
-    let input = MyCsv()
+    let input = new MyCsv()
     // let otherInput = MyCsv.Load(...)
 
     input.Headers |> printfn "TypeProviders: %A"
@@ -667,13 +667,13 @@ module TypeProviders =
     tracker.Html.CssSelect("div#footer")
     |> Seq.iter (fun item -> printfn "TypeProviders.HTML2: %A" (item.InnerText()))
 
-    // XML provider
-    type HupRssProvider = XmlProvider<"""http://hup.hu/node/feed""">
-    let rssFeed = HupRssProvider.Load("""http://hup.hu/node/feed""")
-
-    rssFeed.Channel.Items
-    |> Seq.map (fun item -> item.Title)
-    |> Seq.iter (printfn "TypeProviders.HTML3: %A")
+//    // XML provider
+//    type HupRssProvider = XmlProvider<"""http://hup.hu/node/feed""">
+//    let rssFeed = HupRssProvider.Load("""http://hup.hu/node/feed""")
+//
+//    rssFeed.Channel.Items
+//    |> Seq.map (fun item -> item.Title)
+//    |> Seq.iter (printfn "TypeProviders.HTML3: %A")
 
 // ---------------------------------------------------------------------------
 // 11. Native interop
