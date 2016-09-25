@@ -245,15 +245,15 @@ var DiscriminatedUnions = exports.DiscriminatedUnions = function ($exports) {
 
   var myLogin = $exports.myLogin = new LoginMethods("UserIdAndPin", [274161, 6180]);
 
-  var LoginMethods__ = $exports["LoginMethods''"] = function () {
-    function LoginMethods__(caseName, fields) {
-      _classCallCheck(this, LoginMethods__);
+  var LoginMethods_ = $exports["LoginMethods'"] = function () {
+    function LoginMethods_(caseName, fields) {
+      _classCallCheck(this, LoginMethods_);
 
       this.Case = caseName;
       this.Fields = fields;
     }
 
-    _createClass(LoginMethods__, [{
+    _createClass(LoginMethods_, [{
       key: "Equals",
       value: function Equals(other) {
         return _fableCore.Util.equalsUnions(this, other);
@@ -265,10 +265,10 @@ var DiscriminatedUnions = exports.DiscriminatedUnions = function ($exports) {
       }
     }]);
 
-    return LoginMethods__;
+    return LoginMethods_;
   }();
 
-  _fableCore.Util.setInterfaces(LoginMethods__.prototype, ["FSharpUnion", "System.IEquatable", "System.IComparable"], "Main.DiscriminatedUnions.LoginMethods''");
+  _fableCore.Util.setInterfaces(LoginMethods_.prototype, ["FSharpUnion", "System.IEquatable", "System.IComparable"], "Main.DiscriminatedUnions.LoginMethods'");
 
   return $exports;
 }({});
@@ -335,7 +335,6 @@ var PatternMatching = exports.PatternMatching = function ($exports) {
     return x == null ? true : false;
   };
 
-  var myObj = $exports.myObj = "Hello";
   return $exports;
 }({});
 
