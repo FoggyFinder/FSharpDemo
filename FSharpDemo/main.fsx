@@ -60,7 +60,6 @@ module Introduction =
 
     printfn "Introduction.reverseList: %A" (reverseList myList)
 
-#if FSC // JS doesn't have good tail-recursion
     // y = integral f(x) = x^2 from 1.0 to 2.0 
     // f(x) = x^2
     // F(X) = x^3/3
@@ -107,7 +106,6 @@ module Introduction =
     //     }
     //     return accumulator;
     // }
-#endif
 
 // ---------------------------------------------------------------------------
 // 2. Let's transcend: from imperative to functional programming
@@ -248,15 +246,12 @@ module Types =
     let a = 100
     let b = 100L
     let c = "100"
-
-#if FSC // JS doesn't have decimal and biginteger
     let d = 100M
     let e = 100I (* BigInteger *)
 
     // Fermat little theorem: (a^p) mod p = p
     let p = bigint.ModPow(e, 65537I,  65537I)
     let q = bigint.Pow (e, 65537)
-#endif
 
     let f = System.DateTime.Now
     let g = ()
@@ -304,11 +299,11 @@ module Collections =
     let intersection = Set.intersect mySet1 mySet2
 
 module TuplesAndRecords =
+
     open System
 
     let myTuple = ("Hello", "from", "F#", DateTime.Now)
 
-#if FSC // JS doesn't have 64-bit integer
     let result = Int64.TryParse("100")
 
     // C# 6 feature
@@ -319,7 +314,6 @@ module TuplesAndRecords =
     type MyRecordType = { Id: int64; Name: string; Value: decimal option }
     let myRecord = { Id = 100L; Name = "Hello"; Value = None }
     let newRecord = { myRecord with Id = 200L; Value = Some 2M}
-#endif
 
 module Enums =
 
@@ -391,7 +385,6 @@ module PatternMatching =
         | null -> true
         | _ -> false
 
-#if FSC // JS doesn't have System.Exception
     // Pattern matching with types
     let myObj = "Hello"
 
@@ -403,7 +396,6 @@ module PatternMatching =
         | _ -> printfn "PatternMatching.whatIsIt is unknown"
 
     whatIsIt myObj
-#endif
 
 module ActivePatterns =
 
@@ -426,7 +418,6 @@ module FunctionsAndCurrying =
     let bicrement = add 2
     let r = bicrement 10
 
-#if FSC // JS doesn't support operator overloading
 module Operators =
 
     open Checked
@@ -447,7 +438,6 @@ module Operators =
         [1..5] 
         |> List.map (fun x -> x * x)
         |> List.iter (printfn "Operators.|> %A")
-#endif
 
 module ControlFlow =
 
@@ -534,10 +524,8 @@ module Interfaces =
         interface IInterface1 with 
             member this.MemberFunc1 x y = ()
 
-#if FSC // JS doesn't support decimal
         interface IInterface2 with 
             member this.MemberFunc2 z = 120M
-#endif
 
 // ---------------------------------------------------------------------------
 // 6. Exception handling and raising
@@ -549,7 +537,6 @@ module Exceptions =
     // invalidArg -> System.ArgumentException
     // invalidOp -> System.InvalidOperationException
 
-#if FSC
     try
         failwith "fail"
     with
@@ -561,9 +548,6 @@ module Exceptions =
             if x then "ok" else failwith "fail"
         finally
             printf "this will always be printed"
-#else
-    ()
-#endif
 
 // ---------------------------------------------------------------------------
 // 7. Events
@@ -578,7 +562,6 @@ module Events =
 
     myEvent.Trigger("Data")
 
-#if FSC // JS doesn't support CLI events
     // CLI events
     open System
 
@@ -598,7 +581,6 @@ module Events =
     publishedCliEvent.Add(fun args -> printfn "Events B: %A" (args.ToString()))
 
     myCliEvent.Trigger(new Object(), new MyEventArgs())
-#endif
 
 // ---------------------------------------------------------------------------
 // 8. Unit of measure
@@ -622,7 +604,6 @@ module UnitsOfMeasure =
 
 module AsyncProgramming =
 
-#if FSC // JS doesn't support System.Threading.Thread.Sleep and Async.RunSynchronously
     let myTask delay = async {
         do System.Threading.Thread.Sleep(delay * 1000)
         return 100 + delay 
@@ -633,7 +614,6 @@ module AsyncProgramming =
     |> Async.Parallel
     |> Async.RunSynchronously 
     |> Seq.iter (printfn "AsyncProgramming.Result: %A")
-#endif
 
     let counterThread =
         MailboxProcessor.Start(fun inbox ->
@@ -654,8 +634,10 @@ module AsyncProgramming =
 // 10. Type providers
 // ---------------------------------------------------------------------------
 
-#if FSC // JS doesn't support assembly refeences and type providers
-#reference "packages/FSharp.Data/lib/net40/FSharp.Data.dll"
+#if INTERACTIVE
+#reference @"..\packages\FSharp.Data.2.3.2\lib\net40\FSharp.Data.dll"
+#endif
+
 module TypeProviders =
 
     open FSharp.Data
@@ -692,13 +674,11 @@ module TypeProviders =
     rssFeed.Channel.Items
     |> Seq.map (fun item -> item.Title)
     |> Seq.iter (printfn "TypeProviders.HTML3: %A")
-#endif
 
 // ---------------------------------------------------------------------------
 // 11. Native interop
 // ---------------------------------------------------------------------------
 
-#if FSC // JS has different native interop solution
 module NativeInteropModule =
 
     open System.Runtime.InteropServices
@@ -710,13 +690,11 @@ module NativeInteropModule =
         Beep(700, 1500)
     with
     | :? System.EntryPointNotFoundException -> printfn "NativeInteropModule: Entry point could not be found."
-#endif
 
 // ---------------------------------------------------------------------------
 // Other interesting topics: code quotations and computational expressions
 // ---------------------------------------------------------------------------
 
-#if FSC // JS doesn't support Code Quotations
 module CodeQuotations =
     open FSharp
     open FSharp.Quotations
@@ -738,7 +716,6 @@ module CodeQuotations =
             | _ -> ()
         | _ -> ()
     | _ -> ()
-#endif
 
 module ComputationalExpressions =
 
@@ -786,12 +763,3 @@ module ComputationalExpressions =
 
     let good' = divideByWorkflow' 12 3 2 1
     let bad' = divideByWorkflow' 12 3 0 1
-
-// ----------------------------------------------------------------------------
-// vim key combinations
-// ----------------------------------------------------------------------------
-// :FsiShow
-// CTRL-w x
-// CTRL-w CTRL-w
-// -i -d
-// ----------------------------------------------------------------------------

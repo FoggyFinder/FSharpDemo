@@ -1,7 +1,7 @@
-paket.exe
 packages
-build.fsx_*
 node_modules
 main.exe
-*.dll
-.fake
+**/*.dll
+**/*.exe
+FSharpDemo/bin
+FSharpDemo/obj
