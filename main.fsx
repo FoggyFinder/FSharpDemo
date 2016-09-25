@@ -707,7 +707,10 @@ module NativeInteropModule =
     [<DllImport("kernel32.dll", EntryPoint="Beep")>]
     extern void Beep(int32 frequency, int32 length);
 
-    Beep(700, 1500)
+    try
+        Beep(700, 1500)
+    with
+    | :? System.EntryPointNotFoundException -> printfn "Entry point could not be found."
 #endif
 
 // ---------------------------------------------------------------------------
