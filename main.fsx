@@ -673,8 +673,8 @@ module TypeProviders =
     |> Seq.iter (fun row -> printfn "TypeProviders: %A|%A|%A" row.First row.Second row.Third)
 
     // HTML Type Provider
-    type HupTracerType = HtmlProvider<"""http://hup.hu/tracker""">
-    let tracker = HupTracerType()
+    type HupTrackerType = HtmlProvider<"""http://hup.hu/tracker""">
+    let tracker = HupTrackerType()
 
     // HUP tracker
     tracker.Tables.``Friss tartalom``.Rows
