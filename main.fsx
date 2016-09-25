@@ -325,9 +325,9 @@ module TuplesAndRecords =
 module Enums =
 
     type ColorEnum = 
-        | Red = 1
-        | Green = 2
-        | Blue = 4
+    | Red = 1
+    | Green = 2
+    | Blue = 4
 
 // C# 8 feature
 module DiscriminatedUnions =
@@ -411,8 +411,8 @@ module ActivePatterns =
     let (|IsOdd|IsEven|) n = if n % 2 = 0 then IsEven else IsOdd
 
     match 12 with
-        | IsEven -> printfn "ActivePatterns: 12 is even"
-        | IsOdd -> printfn "ActivePatterns: 12 is odd"
+    | IsEven -> printfn "ActivePatterns: 12 is even"
+    | IsOdd -> printfn "ActivePatterns: 12 is odd"
 
 // ---------------------------------------------------------------------------
 // 4. Functions
@@ -554,8 +554,8 @@ module Exceptions =
     try
         failwith "fail"
     with
-        | Failure msg -> "caught: " + msg
-        | :? System.InvalidOperationException as ex -> "unexpected"
+    | Failure msg -> "caught: " + msg
+    | :? System.InvalidOperationException as ex -> "unexpected"
 
     let myFunction x = 
         try
