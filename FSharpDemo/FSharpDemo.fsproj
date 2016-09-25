@@ -58,7 +58,7 @@
     <Content Include="packages.config" />
     <None Include="main.fsx" />
     <None Include="data\input.csv" />
-    <Compile Include="homework\homework.fsi" />
+    <None Include="homework\homework.fsi" />
     <None Include="homework\homework.fsx" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

@@ -1,4 +1,7 @@
-#r @"../packages/NUnit/lib/net45/nunit.Framework.dll"
+#if INTERACTOVE
+#reference @"..\..\packages\NUnit.3.4.1\lib\net45\nunit.Framework.dll"
+#endif
+
 open NUnit.Framework
 
 let areEqual x y = Assert.AreEqual(x, y)
