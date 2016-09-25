@@ -671,6 +671,16 @@ module TypeProviders =
 
     input.Rows
     |> Seq.iter (fun row -> printfn "TypeProviders: %A|%A|%A" row.First row.Second row.Third)
+
+    // HTML Type Provider
+    type HupTracerType = HtmlProvider<"""http://hup.hu/tracker""">
+    let tracker = HupTracerType()
+
+    // HUP tracker
+    tracker.Tables.``Friss tartalom``.Rows
+    |> Seq.map (fun row -> row.Tartalom)
+    |> Seq.distinct
+    |> Seq.iter (printfn "%A")
 #endif
 
 // ---------------------------------------------------------------------------
