@@ -670,7 +670,7 @@ module TypeProviders =
     input.Headers |> printfn "TypeProviders: %A"
 
     input.Rows
-    |> Seq.iter (fun row -> printfn "TypeProviders: %A|%A|%A" row.First row.Second row.Third)
+    |> Seq.iter (fun row -> printfn "TypeProviders.CSV: %A|%A|%A" row.First row.Second row.Third)
 
     // HTML Type Provider
     type HupTrackerType = HtmlProvider<"""http://hup.hu/tracker""">
@@ -680,11 +680,11 @@ module TypeProviders =
     tracker.Tables.``Friss tartalom``.Rows
     |> Seq.map (fun row -> row.Tartalom)
     |> Seq.distinct
-    |> Seq.iter (printfn "%A")
+    |> Seq.iter (printfn "TypeProviders.HTML1: %A")
 
     // Non-typed access
     tracker.Html.CssSelect("div#footer")
-    |> Seq.iter (fun item -> printfn "%A" (item.InnerText()))
+    |> Seq.iter (fun item -> printfn "TypeProviders.HTML2: %A" (item.InnerText()))
 #endif
 
 // ---------------------------------------------------------------------------
