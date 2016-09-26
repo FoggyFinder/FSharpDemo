@@ -28,6 +28,6 @@ val myReduce : reduceFunction: ('TAcc -> 'T -> 'TAcc') -> initialValue: 'TAcc ->
 // |> myReduce (fun a v -> a + v) 10
 // |> areEqual 25
 
-// [1;2;3;4;5]
+// [1; 2; 3; 4; 5]
 // |> myReduce (*) 1
 // |> areEqual 120
