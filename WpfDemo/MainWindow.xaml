@@ -1,0 +1,23 @@
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ViewModels;assembly=Wind"
+    xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
+    Title="MVVM and XAML Type provider" Height="150" Width="300">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TextBlock 
+            FontSize="28" 
+            Text="{Binding Path=X, Mode=TwoWay}" 
+            Margin="10, 10, 10, 0" 
+            HorizontalAlignment="Center"/>
+        <Button Margin="10, 65, 10, 10"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" 
+                Command="{Binding Path=MyButton}">
+            Press me!
+        </Button>
+    </Grid>
+</Window>
