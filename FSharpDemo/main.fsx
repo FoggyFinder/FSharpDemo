@@ -34,7 +34,7 @@ module Introduction =
     let lambdaFunction = fun x y -> x + y
 
     let partiallyAppliedFunction () = 
-        lambdaFunction 1
+        lambdaFunction
 
     let rec factorial n =
         match n with
