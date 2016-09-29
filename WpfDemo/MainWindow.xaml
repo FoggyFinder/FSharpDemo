@@ -3,13 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:ViewModels;assembly=WpfDemo"
     xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
-    Title="MVVM and XAML Type provider" Height="150" Width="300">
+    Title="MVVM and XAML Type provider" Height="140" Width="200">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
     <Grid>
         <TextBlock 
             FontSize="28" 
+            FontFamily="Segoe UI"
             Text="{Binding Path=Number}" 
             Margin="10, 10, 10, 0" 
             HorizontalAlignment="Center"/>
