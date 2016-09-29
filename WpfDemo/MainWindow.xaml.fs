@@ -19,11 +19,11 @@ type MyButtonType(viewModel: MainViewModel) =
             executeChangedEvent.Publish
             
         member this.CanExecute(parameter: obj): bool = 
-            true
+            viewModel.Number < 110
 
-        member x.Execute(parameter: obj): unit = 
-            printfn "Button pressed"
+        member this.Execute(parameter: obj): unit =
             viewModel.Number <- viewModel.Number + 1
+            executeChangedEvent.Trigger(this, EventArgs())
 
 and MainViewModel() as self = 
     inherit ViewModelBase()
@@ -44,7 +44,7 @@ and MainViewModel() as self =
         and set(value) =
             printfn "Called S: %A" value 
             number <- value
-            event.Trigger(this, PropertyChangedEventArgs("X"))
+            event.Trigger(this, PropertyChangedEventArgs("Number"))
 
     member this.MyButton
         with get() = 

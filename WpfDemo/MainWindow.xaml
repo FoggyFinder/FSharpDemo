@@ -1,7 +1,7 @@
 <Window
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:ViewModels;assembly=Wind"
+    xmlns:local="clr-namespace:ViewModels;assembly=WpfDemo"
     xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
     Title="MVVM and XAML Type provider" Height="150" Width="300">
     <Window.DataContext>
@@ -10,7 +10,7 @@
     <Grid>
         <TextBlock 
             FontSize="28" 
-            Text="{Binding Path=X, Mode=TwoWay}" 
+            Text="{Binding Path=Number}" 
             Margin="10, 10, 10, 0" 
             HorizontalAlignment="Center"/>
         <Button Margin="10, 65, 10, 10"
