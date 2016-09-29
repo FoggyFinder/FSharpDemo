@@ -10,42 +10,41 @@ open System.Windows.Input
 
 type MainView = XAML<"MainWindow.xaml">
 
-type MyButtonType(o: MainViewModel) =
-    let z = Event<EventHandler,EventArgs>()
+type MyButtonType(viewModel: MainViewModel) =
+    let executeChangedEvent = Event<EventHandler,EventArgs>()
 
     interface ICommand with
         [<CLIEvent>]
-        member x.CanExecuteChanged: IEvent<EventHandler,EventArgs> = 
-            z.Publish
+        member this.CanExecuteChanged: IEvent<EventHandler,EventArgs> = 
+            executeChangedEvent.Publish
             
-        member x.CanExecute(parameter: obj): bool = 
+        member this.CanExecute(parameter: obj): bool = 
             true
 
         member x.Execute(parameter: obj): unit = 
             printfn "Button pressed"
-            o.X <- o.X + 1
+            viewModel.Number <- viewModel.Number + 1
 
-                 
 and MainViewModel() as self = 
     inherit ViewModelBase()
 
-    let mutable k = 100
+    let mutable number = 100
 
-    let evt = Event<_,_>()
+    let event = Event<_,_>()
     let button = MyButtonType(self)
 
     interface INotifyPropertyChanged with
         [<CLIEvent>]
-        member this.PropertyChanged = evt.Publish 
+        member this.PropertyChanged = event.Publish 
 
-    member this.X
+    member this.Number
         with get() =
-            printfn "Called G: %A" k 
-            k
+            printfn "Called G: %A" number 
+            number
         and set(value) =
             printfn "Called S: %A" value 
-            k <- value
-            evt.Trigger(this, PropertyChangedEventArgs("X"))
+            number <- value
+            event.Trigger(this, PropertyChangedEventArgs("X"))
 
     member this.MyButton
         with get() = 

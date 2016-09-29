@@ -1,4 +1,4 @@
-module Wind
+module MainModule
 
 open System
 open FsXaml
