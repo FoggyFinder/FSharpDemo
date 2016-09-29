@@ -11,19 +11,26 @@ module Rest =
         inherit NancyModule()
 
         do
-            this.Post.["/fb"] <- fun _ ->
-                printfn "----------------------------------------------------------\nPOST request arrived:"
+            this.Get.["/"] <- fun _ ->
+                this.printRequest "GET"
+                "Hello from Nancy" :> obj
 
-                let headers = this.Request.Headers
-                headers
-                |> Seq.iter (fun keyValuePair -> printfn "%s: %A" keyValuePair.Key (String.concat ", " keyValuePair.Value))
-
-                printfn ""
-
-                let body = this.Request.Body.AsString()
-                printfn "%s" body
-
+            this.Post.["/"] <- fun _ ->
+                this.printRequest "POST"
                 [] :> obj
+
+        member this.printRequest verb =
+            printfn "\n---------------------------------------------------------"
+            printfn "%s request arrived:" verb
+            printfn "---------------------------------------------------------"
+
+            this.Request.Headers
+            |> Seq.iter (fun keyValuePair -> printfn "%s: %A" keyValuePair.Key (String.concat ", " keyValuePair.Value))
+
+            printfn ""
+
+            this.Request.Body.AsString()
+            |> printfn "%s"
 
 module MainModule =
 
@@ -31,12 +38,13 @@ module MainModule =
     let main argv =
         let url = "http://localhost:5004"
 
-        printfn "Starting Facebook API consumer service..."
+        printfn "Starting Nancy Demo Service..."
 
         use host = new NancyHost(Uri(url))
         host.Start()
         printfn "Running on %A" url
 
         while true do
-            Thread.Sleep(10000)
+            Thread.Sleep(1000)
+
         0
