@@ -39,10 +39,8 @@ and MainViewModel() as self =
 
     member this.Number
         with get() =
-            printfn "Called G: %A" number 
             number
         and set(value) =
-            printfn "Called S: %A" value 
             number <- value
             event.Trigger(this, PropertyChangedEventArgs("Number"))
 
