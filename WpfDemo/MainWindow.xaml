@@ -3,20 +3,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:ViewModels;assembly=WpfDemo"
     xmlns:fsxaml="http://github.com/fsprojects/FsXaml"
-    Title="MVVM and XAML Type provider" Height="140" Width="200">
+    Title="MVVM and XAML Type provider" Height="140" Width="200" MinWidth="200" MinHeight="140">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
     <Grid>
         <TextBlock 
-            FontSize="28" 
+            FontSize="36" 
             FontFamily="Segoe UI"
+            VerticalAlignment="Stretch"
             Text="{Binding Path=Number}" 
-            Margin="10, 10, 10, 0" 
+            Margin="10, 10, 10, 45" 
             HorizontalAlignment="Center"/>
         <Button Margin="10, 65, 10, 10"
                 HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch" 
+                VerticalAlignment="Bottom" 
+                Height="25"
                 Command="{Binding Path=MyButton}">
             Press me!
         </Button>
