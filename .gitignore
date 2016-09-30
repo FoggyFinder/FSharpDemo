@@ -3,10 +3,6 @@ node_modules
 main.exe
 **/*.dll
 **/*.exe
-FSharpDemo/bin
-FSharpDemo/obj
-WpfDemo/bin
-WpfDemo/obj
-NancyDemo/bin
-NancyDemo/obj
+**/bin
+**/obj
 **/.vs
