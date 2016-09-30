@@ -30,7 +30,6 @@ module GpgpuModule =
         printfn "y1 = %A" solution1
 
         // Using the Intel MKL native provider
-        //Control.NativeProviderPath <- Path.Combine(__SOURCE_DIRECTORY__, @"..\packages\MathNet.Numerics.MKL.Win.2.1.0\build\x64")
         Control.UseNativeMKL()
         printfn "Linear Algebra Provider = %A" Control.LinearAlgebraProvider
 
