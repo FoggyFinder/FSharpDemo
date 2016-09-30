@@ -9,6 +9,7 @@ open System.Web.Http
 [<RoutePrefix("api2/values")>]
 type ValuesController() =
     inherit ApiController()
+
     let values = [|"value1";"value2"|]
 
     /// Gets all values.
@@ -17,7 +18,7 @@ type ValuesController() =
 
     /// Gets the value with index id.
     [<Route("{id:int}")>]
-    member x.Get(id) : IHttpActionResult =
+    member x.Get(id): IHttpActionResult =
         if id > values.Length - 1 then
             x.BadRequest() :> _
         else x.Ok(values.[id]) :> _
