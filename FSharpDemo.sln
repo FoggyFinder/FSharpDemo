@@ -11,6 +11,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "NancyDemo", "NancyDemo\Nanc
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AspNetWebApi", "AspNetWebApi\AspNetWebApi.fsproj", "{8AF73DD1-56EA-4BAA-A909-DA9D80A63709}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GpuDemo", "GpuDemo\GpuDemo.fsproj", "{60E4BB78-AD60-4376-887F-8E471DAA209E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,14 @@ Global
 		{8AF73DD1-56EA-4BAA-A909-DA9D80A63709}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8AF73DD1-56EA-4BAA-A909-DA9D80A63709}.Release|x86.ActiveCfg = Release|Any CPU
 		{8AF73DD1-56EA-4BAA-A909-DA9D80A63709}.Release|x86.Build.0 = Release|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Debug|x86.Build.0 = Debug|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Release|x86.ActiveCfg = Release|Any CPU
+		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
