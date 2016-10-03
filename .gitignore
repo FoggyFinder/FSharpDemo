@@ -6,3 +6,5 @@ main.exe
 **/bin
 **/obj
 **/.vs
+/JavaScriptDemo/MyLibrary.js
+/JavaScriptDemo/MyLibrary.js.map

@@ -13,6 +13,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AspNetWebApi", "AspNetWebAp
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GpuDemo", "GpuDemo\GpuDemo.fsproj", "{60E4BB78-AD60-4376-887F-8E471DAA209E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "JavaScriptDemo", "JavaScriptDemo\JavaScriptDemo.fsproj", "{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,14 @@ Global
 		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Release|x86.ActiveCfg = Release|Any CPU
 		{60E4BB78-AD60-4376-887F-8E471DAA209E}.Release|x86.Build.0 = Release|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Debug|x86.Build.0 = Debug|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Release|x86.ActiveCfg = Release|Any CPU
+		{CEF08D36-88EF-449A-AB01-E77F2DE35FC0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
