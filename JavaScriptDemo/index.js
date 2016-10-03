@@ -1,4 +1,4 @@
-﻿var myLibrary = require("./MyLibrary.js")
+﻿var myLibrary = require("./js/MyLibrary.js")
 
 var fs = myLibrary.fibonacciSum()
 console.log("Fibonaccí sum: " + fs)

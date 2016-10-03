@@ -59,6 +59,7 @@
     <Compile Include="MyLibrary.fs" />
     <None Include="package.json" />
     <None Include="index.js" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
