@@ -37,15 +37,12 @@ let rec myFilter filterFunction inputList =
 // Reduce
 // --------------------------------------------------------------------
 
-let rec myReduce reduceFunction initialValue inputList =
-    let rec myReduceInner reduceFunction accumulator inputList =
-        match inputList with
-        | [] -> accumulator
-        | x :: xs ->
-            let accumulator' = reduceFunction accumulator x
-            myReduceInner reduceFunction accumulator' xs
-
-    myReduceInner reduceFunction initialValue inputList
+let rec myReduce reduceFunction accumulator inputList =
+    match inputList with
+    | [] -> accumulator
+    | x :: xs ->
+        let accumulator' = reduceFunction accumulator x
+        myReduce reduceFunction accumulator' xs
 
 [0..5]
 |> myReduce (fun a v -> a + v) 10
