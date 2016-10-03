@@ -51,7 +51,8 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <PropertyGroup>
-    <PostBuildEvent>.\node_modules\.bin\fable.cmd -o js -s -m commonjs JavaScriptDemo.fsproj</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
