@@ -1,22 +1,31 @@
 ﻿open System
+open System.Threading
 open Octokit
 open Octokit.Reactive
 
-let myGithubCallback  notification = 
-    printfn "NOTI: %A" (notification.ToString())
+let myGithubCallback (notification: Issue) = 
+    printfn "Title: %A" notification.Title
+    printfn "UpdatedAt: %A" notification.UpdatedAt
     ()
 
 [<EntryPoint>]
 let main argv = 
     let client = new GitHubClient(new ProductHeaderValue("FSharpDemo"));
-    client.Credentials <- Credentials("d7633e43c0b5750fc5d94bdb9c8d5bc518b2f623");
+    client.Credentials <- Credentials("211a3b27f7261f913933987e760335128732ba47");
 
-    let observableClient = ObservableNotificationsClient(client)
+    let user = client.User.Current().Result
+    printfn "User: %s" user.Name
 
-    use subscription = observableClient.GetAllForRepository("fuszenecker", "FSharpDemo").Subscribe(myGithubCallback)
+    //let observableClient = ObservableNotificationsClient(client)
+    //use subscription = observableClient.GetAllForRepository("fuszenecker", "FSharpDemo").Subscribe(myGithubCallback)
+
+    let issuesClient = ObservableIssuesClient(client)
+    use subscription = issuesClient.GetAllForCurrent().Subscribe(myGithubCallback)
 
     printfn "Observing..."
-    Console.ReadLine() |> ignore
+    
+    while true do
+        Thread.Sleep(1000)
 
     printfn "%A" argv
     0 // return an integer exit code
