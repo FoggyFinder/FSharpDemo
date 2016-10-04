@@ -11,11 +11,11 @@ open System.Windows.Input
 type MainView = XAML<"MainWindow.xaml">
 
 type MyButtonType(viewModel: MainViewModel) =
-    let executeChangedEvent = Event<EventHandler,EventArgs>()
+    let executeChangedEvent = Event<EventHandler, EventArgs>()
 
     interface ICommand with
         [<CLIEvent>]
-        member this.CanExecuteChanged: IEvent<EventHandler,EventArgs> = 
+        member this.CanExecuteChanged: IEvent<EventHandler, EventArgs> = 
             executeChangedEvent.Publish
             
         member this.CanExecute(parameter: obj): bool = 
